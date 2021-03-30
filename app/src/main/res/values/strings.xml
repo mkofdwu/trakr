@@ -14,4 +14,22 @@
     <string name="confirm_password">Confirm password</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="your_day">Your day</string>
+    <string name="history_icon">history icon</string>
+    <string name="new_moment">New moment</string>
+    <string name="settings_icon">settings icon</string>
+    <string name="help_icon">help icon</string>
+    <string name="back_icon">back icon</string>
+    <string name="settings">Settings</string>
+    <string name="profile_photo">profile photo</string>
+    <string name="preferences">Preferences</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="logout">Logout</string>
+    <string name="delete_account">Delete account</string>
+    <string name="about_trakr">About trakr</string>
+    <string name="task_types">Task types</string>
+    <string name="privacy">Privacy</string>
+    <string name="notifications">Notifications</string>
+    <string name="stop_icon">stop icon</string>
+    <string name="pause_icon">pause icon</string>
+    <string name="edit_icon">edit icon</string>
 </resources>

@@ -8,4 +8,10 @@
     <color name="text1">#99000000</color>
     <color name="text2">#66000000</color>
     <color name="text3">#33000000</color>
+    <color name="absolute">#FFFFFFFF</color>
+
+    <!-- palette colors -->
+    <color name="purple">#FF8636C6</color>
+    <color name="orange">#FFC68336</color>
+    <color name="red">#FFC63636</color>
 </resources>

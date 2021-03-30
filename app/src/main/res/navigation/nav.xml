@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.trakr.SplashFragment"
+        android:name="com.example.trakr.ui.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -19,22 +19,22 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.trakr.HomeFragment"
+        android:name="com.example.trakr.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.trakr.LoginFragment"
+        android:name="com.example.trakr.ui.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.trakr.RegisterFragment"
+        android:name="com.example.trakr.ui.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.trakr.WelcomeFragment"
+        android:name="com.example.trakr.ui.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action

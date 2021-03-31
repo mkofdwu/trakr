@@ -1,182 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.SettingsFragment">
+<layout>
 
-    <ImageView
-        android:id="@+id/back_btn"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/back_icon"
-        android:src="@drawable/back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:contentDescription="@string/help_icon"
-        android:src="@drawable/help"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <variable
+            name="fragment"
+            type="com.example.trakr.ui.SettingsFragment" />
 
-    <TextView
-        android:id="@+id/current_date_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:letterSpacing="0.1"
-        android:textAllCaps="true"
-        android:textColor="@color/text2"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="16 Mar" />
+        <variable
+            name="user"
+            type="com.example.trakr.models.User" />
+    </data>
 
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:letterSpacing="0.1"
-        android:text="@string/settings"
-        android:textAllCaps="true"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/current_date_text" />
-
-    <include
-        android:id="@+id/edit_profile_container"
-        layout="@layout/view_edit_profile"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintTop_toBottomOf="@id/title_text" />
+        android:layout_height="match_parent"
+        tools:context=".ui.SettingsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/prefs_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/card_bg"
-        android:backgroundTint="@color/primary"
-        android:paddingStart="30dp"
-        android:paddingTop="24dp"
-        android:paddingEnd="30dp"
-        android:paddingBottom="24dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_profile_container">
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/back_icon"
+            android:src="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/prefs_text"
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/help_icon"
+            android:src="@drawable/help"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.trakr.ui.customviews.CurrentDateTextView
+            android:id="@+id/current_date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:letterSpacing="0.1"
-            android:text="@string/preferences"
             android:textAllCaps="true"
-            android:textColor="#fff"
-            android:textSize="12sp"
+            android:textColor="@color/text2"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/dark_mode_text"
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.1"
+            android:text="@string/settings"
+            android:textAllCaps="true"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/current_date_text" />
+
+        <include
+            android:id="@+id/edit_profile_container"
+            layout="@layout/view_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintTop_toBottomOf="@id/title_text"
+            app:user="@{user}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/prefs_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/card_bg"
+            android:backgroundTint="@color/primary"
+            android:paddingStart="30dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="24dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_profile_container">
+
+            <TextView
+                android:id="@+id/prefs_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text="@string/preferences"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dark_mode_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/avenir_medium"
+                android:text="@string/dark_mode"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/prefs_text" />
+
+            <TextView
+                android:id="@+id/notifications_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/avenir_medium"
+                android:text="@string/notifications"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dark_mode_text" />
+
+            <TextView
+                android:id="@+id/privacy_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/avenir_medium"
+                android:text="@string/privacy"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notifications_text" />
+
+            <TextView
+                android:id="@+id/task_types_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/avenir_medium"
+                android:text="@string/task_types"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/privacy_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/logout_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:fontFamily="@font/avenir_medium"
+            android:text="@string/logout"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/prefs_container" />
+
+        <TextView
+            android:id="@+id/delete_account_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/avenir_medium"
+            android:text="@string/delete_account"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logout_btn" />
+
+        <TextView
+            android:id="@+id/about_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/avenir_medium"
-            android:text="@string/dark_mode"
-            android:textColor="#fff"
+            android:fontFamily="@font/avenir_heavy"
+            android:text="@string/about_trakr"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/prefs_text" />
-
-        <TextView
-            android:id="@+id/notifications_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/avenir_medium"
-            android:text="@string/notifications"
-            android:textColor="#fff"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dark_mode_text" />
-
-        <TextView
-            android:id="@+id/privacy_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/avenir_medium"
-            android:text="@string/privacy"
-            android:textColor="#fff"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/notifications_text" />
-
-        <TextView
-            android:id="@+id/task_types_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/avenir_medium"
-            android:text="@string/task_types"
-            android:textColor="#fff"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/privacy_text" />
+            app:layout_constraintTop_toBottomOf="@id/delete_account_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/logout_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:fontFamily="@font/avenir_medium"
-        android:text="@string/logout"
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/prefs_container" />
-
-    <TextView
-        android:id="@+id/delete_account_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/avenir_medium"
-        android:text="@string/delete_account"
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logout_btn" />
-
-    <TextView
-        android:id="@+id/about_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/avenir_heavy"
-        android:text="@string/about_trakr"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/delete_account_btn" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

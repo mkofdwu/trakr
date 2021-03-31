@@ -7,24 +7,23 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.trakr.R
 import com.example.trakr.adapters.DayRecyclerViewAdapter
+import com.example.trakr.databinding.FragmentHistoryBinding
 
 class HistoryFragment : Fragment() {
+    private lateinit var binding: FragmentHistoryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.view_days_list, container, false)
-
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = DayRecyclerViewAdapter(listOf())
-            }
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_history, null, false)
+        binding.daysList.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = DayRecyclerViewAdapter(hashMapOf())
         }
-        return view
+        return binding.root
     }
 }

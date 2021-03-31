@@ -21,17 +21,41 @@
         android:id="@+id/homeFragment"
         android:name="com.example.trakr.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newTimeEntryFragment"
+            app:destination="@id/newTimeEntryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.trakr.ui.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.trakr.ui.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.trakr.ui.WelcomeFragment"
@@ -43,5 +67,32 @@
         <action
             android:id="@+id/action_welcomeFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.trakr.ui.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.trakr.ui.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/newTimeEntryFragment"
+        android:name="com.example.trakr.ui.NewTimeEntryFragment"
+        android:label="fragment_new_time_entry"
+        tools:layout="@layout/fragment_new_time_entry" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.trakr.ui.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
 </navigation>

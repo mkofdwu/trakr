@@ -23,7 +23,7 @@
         tools:text="6.39 PM" />
 
     <TextView
-        android:id="@+id/moment_title_text"
+        android:id="@+id/time_entry_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"

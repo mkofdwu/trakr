@@ -17,7 +17,7 @@
         tools:text="8.03 PM" />
 
     <TextView
-        android:id="@+id/moment_title_text"
+        android:id="@+id/time_entry_title_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -32,7 +32,7 @@
         android:id="@+id/indicator"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="@drawable/moment_indicator"
+        android:background="@drawable/time_entry_indicator"
         android:backgroundTint="@color/purple"
         app:layout_constraintEnd_toStartOf="@id/indicator_line"
         app:layout_constraintTop_toTopOf="parent" />

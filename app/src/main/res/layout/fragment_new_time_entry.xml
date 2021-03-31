@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:padding="30dp"
+    tools:context=".ui.NewTimeEntryFragment">
+
+    <ImageView
+        android:id="@+id/close_btn"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:contentDescription="@string/close_icon"
+        android:src="@drawable/close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:letterSpacing="0.1"
+        android:text="@string/new_time_entry"
+        android:textAllCaps="true"
+        android:textColor="#FFF"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/close_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.6"
+        android:letterSpacing="0.1"
+        android:textAllCaps="true"
+        android:textColor="#FFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="at 9.37 pm" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@null"
+        android:fontFamily="@font/avenir_medium"
+        android:inputType="textMultiLine"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/title_text"
+        tools:text="Implementing the backend for simple-forum" />
+
+    <TextView
+        android:id="@+id/change_color_text"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:alpha="0.3"
+        android:letterSpacing="0.1"
+        android:text="@string/swipe_to_change_color"
+        android:textAllCaps="true"
+        android:textColor="#FFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/done_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/done_btn" />
+
+    <TextView
+        android:id="@+id/done_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/outline_btn_bg"
+        android:clickable="true"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/avenir_heavy"
+        android:gravity="center"
+        android:letterSpacing="0.1"
+        android:text="@string/done"
+        android:textAllCaps="true"
+        android:textColor="#FFF"
+        app:drawableEndCompat="@drawable/forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

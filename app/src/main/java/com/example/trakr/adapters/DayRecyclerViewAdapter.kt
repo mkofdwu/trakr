@@ -4,12 +4,12 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.example.trakr.R
-import com.example.trakr.models.Day
+import com.example.trakr.models.TimeEntry
+import java.time.LocalDate
 
 class DayRecyclerViewAdapter(
-    private val days: List<Day>
+    private val days: HashMap<LocalDate, List<TimeEntry>>
 ) : RecyclerView.Adapter<DayRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,11 +27,11 @@ class DayRecyclerViewAdapter(
     override fun getItemCount(): Int = days.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
-        val contentView: TextView = view.findViewById(R.id.content)
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
+//        val idView: TextView = view.findViewById(R.id.item_number)
+//        val contentView: TextView = view.findViewById(R.id.content)
+//
+//        override fun toString(): String {
+//            return super.toString() + " '" + contentView.text + "'"
+//        }
     }
 }

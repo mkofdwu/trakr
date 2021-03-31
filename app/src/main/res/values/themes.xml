@@ -1,4 +1,5 @@
-<resources xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+<resources>
+    android:lineSpacingExtra="4sp"
     <!-- Base application theme. -->
     <style name="Theme.Trakr" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
@@ -7,8 +8,17 @@
         <item name="android:textColor">@color/text0</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:fontFamily">@font/avenir_roman</item>
+        <item name="android:lineSpacingExtra">4sp</item>
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Trakr.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:fontFamily">@font/avenir_heavy</item>
+        <item name="android:background">@drawable/text_field_bg</item>
+        <item name="android:textCursorDrawable">@null</item>
     </style>
 </resources>

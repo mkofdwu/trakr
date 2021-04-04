@@ -1,41 +1,41 @@
 package com.example.trakr.models
 
-import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentSnapshot
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import kotlin.collections.HashMap
 
 data class User(
-    val username: String,
-    val photoURL: String,
+    val id: String,
+    var username: String,
+    var photoURL: String?,
+    var activeTimeEntry: TimeEntry?,
+    val colors: List<Int>,
     val createdAt: LocalDateTime,
-    val currentTimeEntry: TimeEntry?
 ) {
     fun toHashMap(): HashMap<String, Any?> {
         return hashMapOf(
             Pair("username", username),
             Pair("photoURL", photoURL),
-            Pair("createdAt", Timestamp(createdAt.toEpochSecond(ZoneOffset.UTC), createdAt.nano)),
-            Pair("currentTimeEntry", currentTimeEntry?.toHashMap())
+            Pair("currentTimeEntry", activeTimeEntry?.toHashMap()),
+            Pair("colors", colors),
+            Pair("createdAt", createdAt.toEpochSecond(ZoneOffset.UTC))
         )
     }
 
     companion object {
         @JvmStatic
-        fun fromHashMap(map: HashMap<String, Any?>): User {
-            val timestamp = map["createdAt"] as Timestamp
-            val createdAt = LocalDateTime.ofEpochSecond(
-                timestamp.seconds,
-                timestamp.nanoseconds,
-                ZoneOffset.UTC
-            )
+        fun fromDoc(doc: DocumentSnapshot): User {
+            val map = doc.data!!
             return User(
+                doc.id,
                 map["username"] as String,
-                map["photoURL"] as String,
-                createdAt,
+                map["photoURL"] as String?,
                 if (map["currentTimeEntry"] != null)
-                    TimeEntry.fromHashMap(map["currentTimeEntry"] as HashMap<String, Any>)
-                else null
+                    TimeEntry.active(map["currentTimeEntry"] as HashMap<String, Any>)
+                else null,
+                map["colors"] as List<Int>,
+                LocalDateTime.ofEpochSecond(map["createdAt"] as Long, 0, ZoneOffset.UTC)
             )
         }
     }

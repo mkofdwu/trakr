@@ -2,8 +2,9 @@
 <resources>
     <color name="primary">#FF506EA9</color>
     <color name="primaryDark">#FF4263A4</color>
-    <color name="background">#FFFAFAFA</color>
-    <color name="onBackground">#FFF4F4F4</color>
+    <color name="background0">#FFFAFAFA</color>
+    <color name="background1">#FFF4F4F4</color>
+    <color name="background2">#FFEEEEEE</color>
     <color name="text0">#FF000000</color>
     <color name="text1">#99000000</color>
     <color name="text2">#66000000</color>

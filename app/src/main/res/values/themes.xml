@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="android:textColor">@color/text0</item>
-        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowBackground">@color/background0</item>
         <item name="android:fontFamily">@font/avenir_roman</item>
         <item name="android:lineSpacingExtra">4sp</item>
         <!-- Customize your theme here. -->

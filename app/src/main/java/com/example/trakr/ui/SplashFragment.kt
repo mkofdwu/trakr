@@ -8,26 +8,30 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.trakr.R
-import com.example.trakr.viewmodels.AuthViewModel
+import com.example.trakr.models.User
+import com.example.trakr.viewmodels.DbViewModel
+import com.example.trakr.viewmodels.UserViewModel
 
 class SplashFragment : Fragment() {
-    private val authViewModel: AuthViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
+    private val dbViewModel: DbViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (authViewModel.isLoggedIn) {
-            authViewModel.refreshCurrentUser(object : AuthViewModel.CompleteListener {
-                override fun onLoggedIn() {
+        if (userViewModel.isLoggedIn) {
+            userViewModel.refreshCurrentUser(object : UserViewModel.AuthListener {
+                override fun onAuthenticated(user: User) {
+                    dbViewModel.setUserId(user.id)
                     view.findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
                 }
+
                 override fun onException(exception: Exception?) {
                 }
             })

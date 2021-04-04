@@ -1,48 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="40dp">
+<layout>
 
-    <TextView
-        android:id="@+id/time_text"
-        android:layout_width="wrap_content"
+    <data>
+
+        <import type="java.time.format.DateTimeFormatter" />
+
+        <variable
+            name="timeEntry"
+            type="com.example.trakr.models.TimeEntry" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/avenir_heavy"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="8.03 PM" />
+        android:layout_marginBottom="40dp">
 
-    <TextView
-        android:id="@+id/time_entry_title_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="16dp"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toStartOf="@id/indicator"
-        app:layout_constraintStart_toEndOf="@id/time_text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Have dinner" />
+        <TextView
+            android:id="@+id/time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_heavy"
+            android:text='@{timeEntry.startTime.format(DateTimeFormatter.ofPattern("h.mm a"))}'
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="8.03 pm" />
 
-    <View
-        android:id="@+id/indicator"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@drawable/time_entry_indicator"
-        android:backgroundTint="@color/purple"
-        app:layout_constraintEnd_toStartOf="@id/indicator_line"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/time_entry_title_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{timeEntry.title}"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@id/indicator"
+            app:layout_constraintStart_toEndOf="@id/time_text"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Have dinner" />
 
-    <View
-        android:id="@+id/indicator_line"
-        android:layout_width="40dp"
-        android:layout_height="2dp"
-        android:background="@color/purple"
-        app:layout_constraintBottom_toBottomOf="@id/indicator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/indicator" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/indicator"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/time_entry_indicator"
+            android:backgroundTint="@{timeEntry.color}"
+            app:layout_constraintEnd_toStartOf="@id/indicator_line"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:backgroundTint="@color/purple" />
+
+        <View
+            android:id="@+id/indicator_line"
+            android:layout_width="40dp"
+            android:layout_height="2dp"
+            android:background="@{timeEntry.color}"
+            app:layout_constraintBottom_toBottomOf="@id/indicator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/indicator"
+            tools:background="@color/purple" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

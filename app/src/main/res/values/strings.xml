@@ -37,4 +37,13 @@
     <string name="about_text">Sagittis at leo habitant sed augue. Mollis in sit viverra nibh in. Tincidunt pharetra, scelerisque eleifend a vel velit neque cursus bibendum. Neque viverra nibh risus eget sed quis. Fermentum amet, faucibus nulla odio et. Aliquet tellus lacus, gravida commodo. Dui faucibus fames mauris, magna. Viverra tempus amet sem feugiat. Risus ut dictum lectus accumsan iaculis turpis. Aliquam gravida a amet diam. Nunc cursus arcu scelerisque praesent vitae.\n\nHac egestas id metus sed iaculis eget enim, at. Ultrices diam dignissim porttitor tortor purus diam phasellus nisi consequat. Dictum cursus mollis feugiat id. Facilisis placerat diam, tristique tortor sed elementum velit pretium.</string>
     <string name="by_jia_jie">By Jia Jie</string>
     <string name="loading">Loading</string>
+    <string name="colors">Colors</string>
+    <string name="change_password">Change password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="new_password">New password</string>
+    <string name="current_password">Current password</string>
+    <string name="confirm">Confirm</string>
+    <string name="placeholder_avatar_icon">placeholder avatar icon</string>
+    <string name="history">History</string>
+    <string name="search_icon">search icon</string>
 </resources>

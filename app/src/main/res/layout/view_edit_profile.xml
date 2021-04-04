@@ -3,11 +3,17 @@
 
     <data>
 
+        <import type="java.time.format.DateTimeFormatter" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment"
+            type="com.example.trakr.ui.SettingsFragment" />
+
         <variable
             name="user"
             type="com.example.trakr.models.User" />
-
-        <import type="java.time.format.DateTimeFormatter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,14 +24,18 @@
         android:background="@drawable/card_bg"
         android:padding="30dp">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/photo_container"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:clickable="true"
+            android:onClick="@{() -> fragment.selectNewPhoto()}"
             app:cardCornerRadius="35dp"
             app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#1A000000"
+            app:strokeWidth="2dp">
 
             <ImageView
                 android:id="@+id/photo"
@@ -33,8 +43,19 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/profile_photo"
                 android:scaleType="centerCrop"
+                android:visibility="@{user.photoURL == null ? View.GONE : View.VISIBLE}"
                 tools:src="@tools:sample/backgrounds/scenic" />
-        </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/placeholder_avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/placeholder_avatar_icon"
+                android:src="@drawable/avatar"
+                android:visibility="@{user.photoURL == null ? View.VISIBLE : View.GONE}"
+                tools:visibility="gone" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/username_text"
@@ -70,6 +91,7 @@
             android:backgroundTint="@color/primary"
             android:clickable="true"
             android:contentDescription="@string/edit_icon"
+            android:onClick="@{() -> fragment.changeUsername()}"
             android:src="@drawable/edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

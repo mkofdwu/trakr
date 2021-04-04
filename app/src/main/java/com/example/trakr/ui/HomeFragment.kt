@@ -7,13 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.trakr.R
 import com.example.trakr.adapters.TimeEntryRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentHomeBinding
+import com.example.trakr.viewmodels.UserViewModel
+import com.example.trakr.viewmodels.DbViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private val userViewModel: UserViewModel by activityViewModels()
+    private val dbViewModel: DbViewModel by activityViewModels()
+
+    private val timeEntriesListAdapter = TimeEntryRecyclerViewAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +30,12 @@ class HomeFragment : Fragment() {
         binding.fragment = this
         binding.timeEntriesList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = TimeEntryRecyclerViewAdapter(listOf())
+            adapter = timeEntriesListAdapter
+        }
+        dbViewModel.streamTimeEntriesToday { timeEntries, error ->
+            if (timeEntries != null) {
+                timeEntriesListAdapter.timeEntries = timeEntries
+            }
         }
         return binding.root
     }

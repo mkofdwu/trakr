@@ -11,13 +11,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentLoginBinding
+import com.example.trakr.models.User
 import com.example.trakr.validators.Field
 import com.example.trakr.validators.UsernamePasswordValidator
-import com.example.trakr.viewmodels.AuthViewModel
+import com.example.trakr.viewmodels.UserViewModel
+import com.example.trakr.viewmodels.DbViewModel
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val authViewModel: AuthViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
+    private val dbViewModel: DbViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,30 +38,20 @@ class LoginFragment : Fragment() {
     fun done() {
         val username = binding.usernameField.text.toString()
         val password = binding.passwordField.text.toString()
-        val errors = UsernamePasswordValidator.validateUsernamePassword(username, password)
-        if (errors.isNotEmpty()) {
-            for (error in errors) {
-                when (error.field) {
-                    Field.USERNAME -> binding.usernameField.error = error.message
-                    Field.PASSWORD -> binding.passwordField.error = error.message
-                    else -> throw Error("invalid field: " + error.field)
-                }
+        userViewModel.login(username, password, object : UserViewModel.AuthListener {
+            override fun onAuthenticated(user: User) {
+                dbViewModel.setUserId(user.id)
+                requireView().findNavController()
+                    .navigate(R.id.action_loginFragment_to_homeFragment)
             }
-        } else {
-            authViewModel.login(username, password, object : AuthViewModel.CompleteListener {
-                override fun onLoggedIn() {
-                    requireView().findNavController()
-                        .navigate(R.id.action_loginFragment_to_homeFragment)
-                }
 
-                override fun onException(exception: Exception?) {
-                    AlertDialog.Builder(context)
-                        .setTitle("Error")
-                        .setMessage(exception!!.message)
-                        .setPositiveButton("Close") { _, _ -> }
-                        .show()
-                }
-            })
-        }
+            override fun onException(exception: Exception?) {
+                AlertDialog.Builder(context)
+                    .setTitle("Error")
+                    .setMessage(exception!!.message)
+                    .setPositiveButton("Close") { _, _ -> }
+                    .show()
+            }
+        })
     }
 }

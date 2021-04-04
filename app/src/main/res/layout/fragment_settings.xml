@@ -25,10 +25,13 @@
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:clickable="true"
             android:contentDescription="@string/back_icon"
+            android:onClick="@{() -> fragment.back()}"
             android:src="@drawable/back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/icon_btn_color" />
 
         <ImageView
             android:layout_width="20dp"
@@ -36,9 +39,11 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@string/help_icon"
+            android:onClick="@{() -> fragment.goToAbout()}"
             android:src="@drawable/help"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/icon_btn_color" />
 
         <com.example.trakr.ui.customviews.CurrentDateTextView
             android:id="@+id/current_date_text"
@@ -74,6 +79,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="70dp"
             android:layout_marginEnd="40dp"
+            app:fragment="@{fragment}"
             app:layout_constraintTop_toBottomOf="@id/title_text"
             app:user="@{user}" />
 
@@ -117,12 +123,13 @@
                 app:layout_constraintTop_toBottomOf="@id/prefs_text" />
 
             <TextView
-                android:id="@+id/notifications_text"
+                android:id="@+id/change_password_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/avenir_medium"
-                android:text="@string/notifications"
+                android:onClick="@{() -> fragment.goToChangePassword()}"
+                android:text="@string/change_password"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,15 +145,15 @@
                 android:textColor="#fff"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notifications_text" />
+                app:layout_constraintTop_toBottomOf="@id/change_password_text" />
 
             <TextView
-                android:id="@+id/task_types_text"
+                android:id="@+id/colors_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/avenir_medium"
-                android:text="@string/task_types"
+                android:text="@string/colors"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -160,6 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="42dp"
             android:fontFamily="@font/avenir_medium"
+            android:onClick="@{() -> fragment.logout()}"
             android:text="@string/logout"
             android:textColor="@color/red"
             android:textSize="16sp"
@@ -173,6 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/avenir_medium"
+            android:onClick="@{() -> fragment.deleteAccount()}"
             android:text="@string/delete_account"
             android:textColor="@color/red"
             android:textSize="16sp"
@@ -186,6 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/avenir_heavy"
+            android:onClick="@{() -> fragment.goToAbout()}"
             android:text="@string/about_trakr"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"

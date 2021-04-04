@@ -3,6 +3,10 @@
 
     <data>
 
+        <import type="java.time.LocalDateTime" />
+
+        <import type="java.time.format.DateTimeFormatter" />
+
         <variable
             name="fragment"
             type="com.example.trakr.ui.NewTimeEntryFragment" />
@@ -18,7 +22,7 @@
             android:id="@+id/color_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/primary" />
+            tools:background="@color/primary" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,7 +34,9 @@
                 android:id="@+id/close_btn"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
+                android:clickable="true"
                 android:contentDescription="@string/close_icon"
+                android:onClick="@{() -> fragment.back()}"
                 android:src="@drawable/close"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -49,10 +55,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/start_time_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.6"
                 android:letterSpacing="0.1"
+                android:text='@{"at " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("h.mm a"))}'
                 android:textAllCaps="true"
                 android:textColor="#FFF"
                 android:textSize="14sp"
@@ -67,8 +75,11 @@
                 android:layout_marginTop="40dp"
                 android:background="@null"
                 android:fontFamily="@font/avenir_medium"
+                android:hint="@string/what_re_you_doing_now"
                 android:inputType="textMultiLine"
                 android:textColor="#FFF"
+                android:textColorHint="#66FFFFFF"
+                android:textCursorDrawable="@null"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/title_text"
                 tools:text="Implementing the backend for simple-forum" />
@@ -97,10 +108,12 @@
                 android:fontFamily="@font/avenir_heavy"
                 android:gravity="center"
                 android:letterSpacing="0.1"
+                android:onClick="@{() -> fragment.done()}"
                 android:text="@string/done"
                 android:textAllCaps="true"
-                android:textColor="#FFF"
+                android:textColor="@color/outline_btn_text_color"
                 app:drawableEndCompat="@drawable/forward"
+                app:drawableTint="@color/outline_btn_text_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

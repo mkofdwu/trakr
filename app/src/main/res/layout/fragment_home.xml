@@ -10,7 +10,7 @@
             type="com.example.trakr.ui.HomeFragment" />
 
         <variable
-            name="currentUser"
+            name="user"
             type="com.example.trakr.models.User" />
     </data>
 
@@ -48,15 +48,17 @@
             app:layout_constraintTop_toBottomOf="@id/current_date_text" />
 
         <include
-            android:id="@+id/current_time_entry"
-            layout="@layout/view_current_time_entry"
+            android:id="@+id/active_time_entry"
+            layout="@layout/view_active_time_entry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="80dp"
             android:layout_marginEnd="40dp"
-            android:visibility="@{currentUser.activeTimeEntry == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/title_text" />
+            android:visibility="@{user.activeTimeEntry == null ? View.GONE : View.VISIBLE}"
+            app:fragment="@{fragment}"
+            app:layout_constraintTop_toBottomOf="@id/title_text"
+            app:timeEntry="@{user.activeTimeEntry}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/time_entries_list"
@@ -66,7 +68,7 @@
             android:layout_marginBottom="40dp"
             android:paddingTop="56dp"
             app:layout_constraintBottom_toTopOf="@id/new_entry_btn"
-            app:layout_constraintTop_toBottomOf="@id/current_time_entry"
+            app:layout_constraintTop_toBottomOf="@id/active_time_entry"
             tools:itemCount="3"
             tools:listitem="@layout/view_time_entry" />
 
@@ -82,7 +84,8 @@
             android:onClick="@{() -> fragment.goToHistory()}"
             android:src="@drawable/history"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/text0" />
 
         <TextView
             android:id="@+id/new_entry_btn"
@@ -114,7 +117,8 @@
             android:onClick="@{() -> fragment.goToSettings()}"
             android:src="@drawable/settings"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/text0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, null, false)
         binding.fragment = this
+        binding.user = userViewModel.getCurrentUser()
         binding.timeEntriesList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = timeEntriesListAdapter
@@ -38,6 +39,24 @@ class HomeFragment : Fragment() {
             }
         }
         return binding.root
+    }
+
+    fun pauseActiveTimeEntry() {
+        val currentUser = userViewModel.getCurrentUser()
+        dbViewModel.addActiveTimeEntry(currentUser.activeTimeEntry!!)
+        binding.invalidateAll()
+    }
+
+    fun resumeActiveEntry() {
+        
+    }
+
+    fun stopActiveTimeEntry() {
+        val currentUser = userViewModel.getCurrentUser()
+        dbViewModel.addActiveTimeEntry(currentUser.activeTimeEntry!!)
+        currentUser.activeTimeEntry = null
+        userViewModel.updateUser("activeTimeEntry", null)
+        binding.invalidateAll()
     }
 
     fun goToNewTimeEntry() {

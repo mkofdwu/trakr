@@ -17,7 +17,7 @@ data class User(
         return hashMapOf(
             Pair("username", username),
             Pair("photoURL", photoURL),
-            Pair("currentTimeEntry", activeTimeEntry?.toHashMap()),
+            Pair("activeTimeEntry", activeTimeEntry?.toHashMap()),
             Pair("colors", colors),
             Pair("createdAt", createdAt.toEpochSecond(ZoneOffset.UTC))
         )
@@ -31,8 +31,8 @@ data class User(
                 doc.id,
                 map["username"] as String,
                 map["photoURL"] as String?,
-                if (map["currentTimeEntry"] != null)
-                    TimeEntry.active(map["currentTimeEntry"] as HashMap<String, Any>)
+                if (map["activeTimeEntry"] != null)
+                    TimeEntry.active(map["activeTimeEntry"] as HashMap<String, Any>)
                 else null,
                 map["colors"] as List<Int>,
                 LocalDateTime.ofEpochSecond(map["createdAt"] as Long, 0, ZoneOffset.UTC)

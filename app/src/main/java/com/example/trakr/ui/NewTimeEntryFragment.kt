@@ -1,6 +1,5 @@
 package com.example.trakr.ui
 
-import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,21 +9,38 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentNewTimeEntryBinding
 import com.example.trakr.models.TimeEntry
 import com.example.trakr.viewmodels.DbViewModel
 import com.example.trakr.viewmodels.UserViewModel
 import java.time.LocalDateTime
-import java.util.ArrayList
 import kotlin.time.Duration
+
+class ColorPageFragment(private val color: Int) : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val view = View(context)
+        view.setBackgroundColor(color)
+        return view
+    }
+}
 
 class NewTimeEntryFragment : Fragment() {
     private lateinit var binding: FragmentNewTimeEntryBinding
     private val userViewModel: UserViewModel by activityViewModels()
     private val dbViewModel: DbViewModel by activityViewModels()
 
-    private val colors = userViewModel.getCurrentUser().colors
+    private lateinit var colors: List<Int>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        colors = userViewModel.getCurrentUser().colors
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,10 +53,14 @@ class NewTimeEntryFragment : Fragment() {
         return binding.root
     }
 
+    fun back() {
+        requireView().findNavController().navigateUp()
+    }
+
     fun done() {
         val currentUser = userViewModel.getCurrentUser()
         if (currentUser.activeTimeEntry != null) {
-            dbViewModel.addTimeEntry(currentUser.activeTimeEntry!!)
+            dbViewModel.addActiveTimeEntry(currentUser.activeTimeEntry!!)
         }
         currentUser.activeTimeEntry = TimeEntry(
             null,
@@ -49,6 +69,8 @@ class NewTimeEntryFragment : Fragment() {
             Duration.ZERO,
             colors[binding.colorPager.currentItem]
         )
+        userViewModel.updateUser("activeTimeEntry", currentUser.activeTimeEntry!!.toHashMap())
+        requireView().findNavController().navigateUp()
     }
 
     internal class ViewPagerAdapter(
@@ -57,21 +79,9 @@ class NewTimeEntryFragment : Fragment() {
     ) :
         FragmentPagerAdapter(supportFragmentManager!!, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(i: Int): Fragment {
-            return object : Fragment() {
-                override fun onCreateView(
-                    inflater: LayoutInflater,
-                    container: ViewGroup?,
-                    savedInstanceState: Bundle?
-                ): View {
-                    val view = View(context)
-                    view.setBackgroundColor(colors[i])
-                    return view
-                }
-            }
+            return ColorPageFragment(colors[i])
         }
 
-        override fun getCount(): Int {
-            return 3
-        }
+        override fun getCount() = colors.size
     }
 }

@@ -8,11 +8,11 @@ import kotlin.time.Duration
 import kotlin.time.toDuration
 
 data class TimeEntry(
-    val id: String?,
-    val title: String,
+    var id: String?,
+    var title: String,
     val startTime: LocalDateTime,
-    val duration: Duration,
-    val color: Int
+    var duration: Duration,
+    var color: Int
 ) {
     fun exists() = id != null
 
@@ -20,7 +20,7 @@ data class TimeEntry(
         return hashMapOf(
             Pair("title", title),
             Pair("startTime", startTime.toEpochSecond(ZoneOffset.UTC)),
-            Pair("duration", duration.inSeconds),
+            Pair("duration", duration.inSeconds.toInt()),
             Pair("color", color)
         )
     }
@@ -33,8 +33,8 @@ data class TimeEntry(
                 doc.id,
                 map["title"] as String,
                 LocalDateTime.ofEpochSecond(map["startTime"] as Long, 0, ZoneOffset.UTC),
-                (map["duration"] as Int).toDuration(TimeUnit.SECONDS),
-                map["color"] as Int
+                (map["duration"] as Long).toDuration(TimeUnit.SECONDS),
+                (map["color"] as Long).toInt()
             )
         }
 
@@ -44,8 +44,8 @@ data class TimeEntry(
                 null,
                 map["title"] as String,
                 LocalDateTime.ofEpochSecond(map["startTime"] as Long, 0, ZoneOffset.UTC),
-                (map["duration"] as Int).toDuration(TimeUnit.SECONDS),
-                map["color"] as Int
+                (map["duration"] as Long).toDuration(TimeUnit.SECONDS),
+                (map["color"] as Long).toInt()
             )
         }
     }

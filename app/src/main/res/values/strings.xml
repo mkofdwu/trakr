@@ -46,4 +46,5 @@
     <string name="placeholder_avatar_icon">placeholder avatar icon</string>
     <string name="history">History</string>
     <string name="search_icon">search icon</string>
+    <string name="what_re_you_doing_now">What\'re you doing now?</string>
 </resources>

@@ -2,7 +2,6 @@ package com.example.trakr.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.example.trakr.models.TimeEntry
-import com.example.trakr.models.User
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -10,6 +9,10 @@ import com.google.firebase.firestore.Query
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneOffset
+import java.time.Duration
+import java.time.temporal.ChronoUnit
+import java.util.concurrent.TimeUnit
+import kotlin.time.toDuration
 
 class DbViewModel : ViewModel() {
     private lateinit var timeEntriesRef: CollectionReference
@@ -21,7 +24,10 @@ class DbViewModel : ViewModel() {
             .collection("timeEntries")
     }
 
-    fun addTimeEntry(timeEntry: TimeEntry) {
+    fun addActiveTimeEntry(activeTimeEntry: TimeEntry) {
+        val timeEntry = activeTimeEntry.copy()
+        val seconds = ChronoUnit.SECONDS.between(timeEntry.startTime, LocalDateTime.now())
+        timeEntry.duration = seconds.toDuration(TimeUnit.SECONDS)
         timeEntriesRef.add(timeEntry.toHashMap())
     }
 

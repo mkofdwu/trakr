@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FF38507E</color>
-    <color name="background">#FF1A1A1A</color>
+    <color name="primary">#283E68</color>
+    <color name="primaryDark">#FF21365E</color>
+    <color name="background0">#FF111111</color>
+    <color name="background1">#FF222222</color>
+    <color name="background2">#3E3E3E</color>
     <color name="text0">#FFFFFFFF</color>
+    <color name="text1">#99FFFFFF</color>
+    <color name="text2">#66FFFFFF</color>
+    <color name="text3">#33FFFFFF</color>
+    <color name="absolute">#FF000000</color>
+    <color name="lightPrimaryOnAbsolute">#66283E68</color>
 </resources>

@@ -1,6 +1,6 @@
 package com.example.trakr.viewmodels
 
-import androidx.lifecycle.MutableLiveData
+import android.graphics.Color
 import androidx.lifecycle.ViewModel
 import com.example.trakr.models.User
 import com.google.firebase.auth.EmailAuthProvider
@@ -49,9 +49,9 @@ class UserViewModel : ViewModel() {
     }
 
     private val defaultColors = listOf(
-        0x8636C6, // purple
-        0xC68336, // orange
-        0xC63636, // red
+        Color.parseColor("#8636C6"), // purple
+        Color.parseColor("#C68336"), // orange
+        Color.parseColor("#C63636"), // red
     )
 
     fun register(username: String, password: String, listener: AuthListener) {

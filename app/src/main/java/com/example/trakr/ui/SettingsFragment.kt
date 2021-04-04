@@ -2,6 +2,7 @@ package com.example.trakr.ui
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -35,6 +37,7 @@ class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private val userViewModel: UserViewModel by activityViewModels()
     private val storageViewModel: StorageViewModel by activityViewModels()
+    private lateinit var prefs: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +46,8 @@ class SettingsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, null, false)
         binding.fragment = this
         binding.user = userViewModel.getCurrentUser()
+        prefs = requireActivity().getSharedPreferences("AppPrefs", 0)
+        binding.darkMode = prefs.getBoolean("darkMode", false)
         refreshPhoto()
         return binding.root
     }
@@ -101,6 +106,17 @@ class SettingsFragment : Fragment() {
         }
         builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
         builder.show()
+    }
+
+    fun toggleDarkMode() {
+        val prefsEdit = prefs.edit()
+        val darkMode = !prefs.getBoolean("darkMode", false)
+        prefsEdit.putBoolean("darkMode", darkMode)
+        prefsEdit.apply()
+        AppCompatDelegate.setDefaultNightMode(
+            if (darkMode) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        )
     }
 
     fun goToChangePassword() {

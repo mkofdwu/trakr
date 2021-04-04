@@ -10,6 +10,10 @@
         <variable
             name="user"
             type="com.example.trakr.models.User" />
+
+        <variable
+            name="darkMode"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -121,6 +125,18 @@
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/prefs_text" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:clickable="true"
+                android:contentDescription='@{darkMode ? "enabled icon" : "disabled icon"}'
+                android:onClick="@{() -> fragment.toggleDarkMode()}"
+                android:src="@{darkMode ? @drawable/check : @drawable/close}"
+                app:layout_constraintBottom_toBottomOf="@id/dark_mode_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dark_mode_text"
+                tools:src="@drawable/close" />
 
             <TextView
                 android:id="@+id/change_password_text"

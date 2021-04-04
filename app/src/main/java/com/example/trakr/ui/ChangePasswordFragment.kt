@@ -26,7 +26,12 @@ class ChangePasswordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_change_password, null, false)
+        binding.fragment = this
         return binding.root
+    }
+
+    fun back() {
+        requireView().findNavController().navigateUp()
     }
 
     fun confirm() {

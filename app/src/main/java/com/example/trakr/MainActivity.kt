@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        setupTheme()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupTheme()
     }
 
     private fun setupTheme() {

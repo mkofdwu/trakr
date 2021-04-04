@@ -1,5 +1,6 @@
 package com.example.trakr.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentWelcomeBinding
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 class WelcomeFragment : Fragment() {
     private lateinit var binding: FragmentWelcomeBinding
@@ -32,6 +34,9 @@ class WelcomeFragment : Fragment() {
             }
             aboutBtn.setOnClickListener {
                 it.findNavController().navigate(R.id.action_welcomeFragment_to_aboutFragment)
+            }
+            licensesBtn.setOnClickListener {
+                startActivity(Intent(context, OssLicensesMenuActivity::class.java))
             }
         }
     }

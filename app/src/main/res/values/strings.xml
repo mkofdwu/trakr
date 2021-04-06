@@ -47,4 +47,8 @@
     <string name="history">History</string>
     <string name="search_icon">search icon</string>
     <string name="what_re_you_doing_now">What\'re you doing now?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="finish_icon">finish icon</string>
+    <string name="delete_icon">delete icon</string>
 </resources>

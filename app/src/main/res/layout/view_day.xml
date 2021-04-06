@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:orientation="vertical">
+<layout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="@font/avenir_heavy"
-        android:letterSpacing="0.1"
-        android:textAllCaps="true"
-        android:textSize="18sp"
-        tools:text="16 Mar" />
+    <data>
 
-    <View
-        android:layout_width="80dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="36dp"
-        android:background="@color/text0" />
+        <import type="java.time.format.DateTimeFormatter" />
 
-    <androidx.recyclerview.widget.RecyclerView
+        <variable
+            name="date"
+            type="java.time.LocalDate" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:itemCount="5"
-        tools:listitem="@layout/view_time_entry" />
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/avenir_heavy"
+            android:letterSpacing="0.1"
+            android:text='@{date.format(DateTimeFormatter.ofPattern("dd MMM"))}'
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            tools:text="16 Mar" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="36dp"
+            android:background="@color/text0" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/time_entries_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="5"
+            tools:listitem="@layout/view_time_entry" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

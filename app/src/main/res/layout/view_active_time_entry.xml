@@ -26,16 +26,15 @@
         android:paddingBottom="36dp">
 
         <TextView
-            android:id="@+id/time_text"
+            android:id="@+id/duration_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenir_heavy"
-            android:text='@{timeEntry.startTime.format(DateTimeFormatter.ofPattern("h.mm a"))}'
             android:textColor="@color/lightPrimaryOnAbsolute"
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="6.39 PM" />
+            tools:text="06:39" />
 
         <TextView
             android:id="@+id/time_entry_title_text"
@@ -48,7 +47,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/time_text"
+            app:layout_constraintTop_toBottomOf="@id/duration_text"
             tools:text="Create a test" />
 
         <View
@@ -56,34 +55,35 @@
             android:layout_height="2dp"
             android:layout_marginStart="30dp"
             android:background="@color/lightPrimaryOnAbsolute"
-            app:layout_constraintBottom_toBottomOf="@id/time_text"
+            app:layout_constraintBottom_toBottomOf="@id/duration_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/time_text"
-            app:layout_constraintTop_toTopOf="@id/time_text" />
+            app:layout_constraintStart_toEndOf="@id/duration_text"
+            app:layout_constraintTop_toTopOf="@id/duration_text" />
 
         <ImageView
-            android:id="@+id/stop_btn"
+            android:id="@+id/delete_btn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="20dp"
             android:clickable="true"
-            android:contentDescription="@string/stop_icon"
-            android:onClick="@{() -> fragment.stopActiveTimeEntry()}"
-            android:src="@drawable/close"
+            android:contentDescription="@string/delete_icon"
+            android:onClick="@{() -> fragment.deleteActiveTimeEntry()}"
+            android:src="@drawable/delete"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/pause_btn"
+            app:layout_constraintEnd_toStartOf="@id/finish_btn"
             app:tint="@color/primary" />
 
         <ImageView
-            android:id="@+id/pause_btn"
+            android:id="@+id/finish_btn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="30dp"
             android:clickable="true"
-            android:contentDescription="@string/pause_icon"
-            android:onClick="@{() -> fragment.pauseActiveTimeEntry()}"
-            android:src="@drawable/pause"
+            android:contentDescription="@string/finish_icon"
+            android:onClick="@{() -> fragment.finishActiveTimeEntry()}"
+            android:src="@drawable/check"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/primary" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

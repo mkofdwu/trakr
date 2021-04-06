@@ -48,28 +48,30 @@ class DbViewModel : ViewModel() {
             }
     }
 
-    fun getHistoryUntil(
+    fun getHistory(
+        startDateTime: LocalDateTime,
         endDateTime: LocalDateTime,
-        callback: (days: HashMap<LocalDate, MutableList<TimeEntry>>?, error: FirebaseFirestoreException?) -> Unit
+        callback: (days: HashMap<LocalDate, List<TimeEntry>>, error: FirebaseFirestoreException?) -> Unit
     ) {
         timeEntriesRef
             .orderBy("startTime", Query.Direction.DESCENDING)
+            .startAfter(startDateTime.toEpochSecond(ZoneOffset.UTC))
             .endBefore(endDateTime.toEpochSecond(ZoneOffset.UTC))
             .addSnapshotListener { value, error ->
                 if (value != null) {
-                    val days = hashMapOf<LocalDate, MutableList<TimeEntry>>()
+                    val days = hashMapOf<LocalDate, List<TimeEntry>>()
                     value.documents.forEach {
                         val timeEntry = TimeEntry.fromDoc(it)
                         val localDate = timeEntry.startTime.toLocalDate()
                         if (days.containsKey(localDate)) {
-                            days[localDate]!!.add(timeEntry)
+                            (days[localDate] as MutableList).add(timeEntry)
                         } else {
                             days[localDate] = mutableListOf(timeEntry)
                         }
                     }
                     callback(days, error)
                 } else {
-                    callback(null, error)
+                    callback(hashMapOf(), error)
                 }
             }
     }

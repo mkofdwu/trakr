@@ -24,6 +24,12 @@
             android:background="@color/absolute"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/text0"
+            app:layout_constraintTop_toBottomOf="@id/app_bar" />
+
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="20dp"
@@ -75,6 +81,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/app_bar"
             tools:listitem="@layout/view_day" />
+
+        <com.kizitonwose.calendarview.CalendarView
+            android:id="@+id/date_selector"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:visibility="gone"
+            app:cv_dayViewResource="@layout/view_calendar_day"
+            app:cv_inDateStyle="none"
+            app:cv_monthHeaderResource="@layout/view_calendar_month_header"
+            app:cv_orientation="vertical"
+            app:cv_outDateStyle="none"
+            app:cv_scrollMode="continuous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

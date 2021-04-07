@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trakr.R
 import com.example.trakr.databinding.ViewDayBinding
 import com.example.trakr.models.TimeEntry
+import com.example.trakr.ui.HistoryFragment
 import java.time.LocalDate
 
-class DayRecyclerViewAdapter : RecyclerView.Adapter<DayRecyclerViewAdapter.ViewHolder>() {
+class DayRecyclerViewAdapter(private val fragment: HistoryFragment) :
+    RecyclerView.Adapter<DayRecyclerViewAdapter.ViewHolder>() {
     var days: HashMap<LocalDate, List<TimeEntry>> = hashMapOf()
         set(newDays) {
             field = newDays
@@ -28,6 +30,7 @@ class DayRecyclerViewAdapter : RecyclerView.Adapter<DayRecyclerViewAdapter.ViewH
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val date = days.keys.elementAt(position)
         val timeEntries = days[date]!!
+        holder.binding.fragment = fragment
         holder.binding.date = date
         holder.binding.timeEntriesList.apply {
             layoutManager = LinearLayoutManager(context)

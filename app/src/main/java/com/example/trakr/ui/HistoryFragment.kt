@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -16,16 +16,32 @@ import com.example.trakr.adapters.DayRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentHistoryBinding
 import com.example.trakr.viewmodels.DbViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.kizitonwose.calendarview.model.CalendarDay
+import com.kizitonwose.calendarview.model.CalendarMonth
+import com.kizitonwose.calendarview.ui.DayBinder
+import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
+import com.kizitonwose.calendarview.ui.ViewContainer
+import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.YearMonth
 
+class DayViewContainer(view: View) : ViewContainer(view) {
+    val textView = view as TextView
+}
+
+class MonthViewContainer(view: View) : ViewContainer(view) {
+    val textView = view as TextView
+}
 
 class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private val dbViewModel: DbViewModel by activityViewModels()
 
-    private val daysListAdapter = DayRecyclerViewAdapter()
+    private val daysListAdapter = DayRecyclerViewAdapter(this)
 
-    private var daysLoaded = 0
+    private var latestDateTime = LocalDateTime.now()
+    private var timeEntriesLoaded = 0
     private var loadedEverything = false
 
     override fun onCreateView(
@@ -46,13 +62,40 @@ class HistoryFragment : Fragment() {
                 }
             })
         }
+        loadMoreDays()
+        binding.dateSelector.dayBinder = object : DayBinder<DayViewContainer> {
+            override fun create(view: View) = DayViewContainer(view as TextView)
+
+            override fun bind(container: DayViewContainer, day: CalendarDay) {
+                container.textView.text = day.date.dayOfMonth.toString()
+                container.textView.setOnClickListener {
+                    goToDay(day)
+                }
+            }
+        }
+        binding.dateSelector.monthHeaderBinder =
+            object : MonthHeaderFooterBinder<MonthViewContainer> {
+                override fun create(view: View) = MonthViewContainer(view)
+
+                override fun bind(container: MonthViewContainer, month: CalendarMonth) {
+                    container.textView.text =
+                        month.yearMonth.month.name.toLowerCase().capitalize() + " " + month.year
+                }
+            }
+        val currentMonth = YearMonth.now()
+        val firstMonth = currentMonth.minusMonths(10)
+        val lastMonth = currentMonth.plusMonths(10)
+        binding.dateSelector.setup(firstMonth, lastMonth, DayOfWeek.SUNDAY)
+        binding.dateSelector.scrollToMonth(currentMonth)
         return binding.root
     }
 
     private fun loadMoreDays() {
         if (loadedEverything) return
-        val endDateTime = LocalDateTime.now().minusDays((daysLoaded + 4).toLong())
-        dbViewModel.getHistory(LocalDateTime.now(), endDateTime) { days, error ->
+        dbViewModel.getHistory(
+            latestDateTime,
+            timeEntriesLoaded + 20
+        ) { days, numTimeEntries, error ->
             if (error != null) {
                 Snackbar.make(
                     requireView(),
@@ -60,13 +103,23 @@ class HistoryFragment : Fragment() {
                     Snackbar.LENGTH_LONG
                 ).show()
             } else {
-                if (days.size - daysListAdapter.days.size < 4) {
+                if (numTimeEntries - timeEntriesLoaded < 20) {
                     loadedEverything = true
                 }
                 daysListAdapter.days = days
-                daysLoaded = days.size
+                timeEntriesLoaded = numTimeEntries
             }
         }
+    }
+
+    private fun goToDay(day: CalendarDay) {
+        latestDateTime = day.date.atStartOfDay()
+        timeEntriesLoaded = 0
+        loadedEverything = false
+        loadMoreDays()
+
+        binding.daysList.visibility = View.VISIBLE
+        binding.dateSelector.visibility = View.GONE
     }
 
     fun back() {
@@ -74,6 +127,12 @@ class HistoryFragment : Fragment() {
     }
 
     fun goToSearch() {
+        // TODO
+    }
 
+    fun goToSelectDate(initialDate: LocalDate) {
+        binding.daysList.visibility = View.GONE
+        binding.dateSelector.visibility = View.VISIBLE
+        binding.dateSelector.scrollToDate(initialDate)
     }
 }

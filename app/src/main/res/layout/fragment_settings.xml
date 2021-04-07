@@ -139,6 +139,18 @@
                 tools:src="@drawable/close" />
 
             <TextView
+                android:id="@+id/colors_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/avenir_medium"
+                android:text="@string/colors"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dark_mode_text" />
+
+            <TextView
                 android:id="@+id/change_password_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -149,7 +161,7 @@
                 android:textColor="#fff"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dark_mode_text" />
+                app:layout_constraintTop_toBottomOf="@id/colors_text" />
 
             <TextView
                 android:id="@+id/privacy_text"
@@ -157,23 +169,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/avenir_medium"
-                android:text="@string/privacy"
+                android:text="Backup data"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/change_password_text" />
-
-            <TextView
-                android:id="@+id/colors_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/avenir_medium"
-                android:text="@string/colors"
-                android:textColor="#fff"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/privacy_text" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

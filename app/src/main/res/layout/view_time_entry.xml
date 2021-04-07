@@ -50,7 +50,7 @@
             android:backgroundTint="@{timeEntry.color}"
             app:layout_constraintEnd_toStartOf="@id/indicator_line"
             app:layout_constraintTop_toTopOf="parent"
-            tools:backgroundTint="@color/purple" />
+            tools:backgroundTint="#8636C6" />
 
         <View
             android:id="@+id/indicator_line"
@@ -60,6 +60,6 @@
             app:layout_constraintBottom_toBottomOf="@id/indicator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/indicator"
-            tools:background="@color/purple" />
+            tools:background="#8636C6" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -8,6 +8,9 @@
         <variable
             name="date"
             type="java.time.LocalDate" />
+        <variable
+            name="fragment"
+            type="com.example.trakr.ui.HistoryFragment" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,6 +22,8 @@
 
         <TextView
             android:id="@+id/date_text"
+            android:clickable="true"
+            android:onClick="@{() -> fragment.goToSelectDate(date)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"

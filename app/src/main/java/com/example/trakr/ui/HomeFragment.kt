@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.adapters.TimeEntryRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentHomeBinding
@@ -26,7 +27,13 @@ class HomeFragment : Fragment() {
 
     private var durationTimer = Timer()
 
-    private val timeEntriesListAdapter = TimeEntryRecyclerViewAdapter()
+    private val timeEntriesListAdapter = TimeEntryRecyclerViewAdapter {
+        findNavController().navigate(
+            R.id.action_homeFragment_to_editTimeEntryFragment,
+            Bundle().apply {
+                putSerializable("timeEntry", it)
+            })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,14 +116,14 @@ class HomeFragment : Fragment() {
     }
 
     fun goToNewTimeEntry() {
-        requireView().findNavController().navigate(R.id.action_homeFragment_to_newTimeEntryFragment)
+        findNavController().navigate(R.id.action_homeFragment_to_newTimeEntryFragment)
     }
 
     fun goToHistory() {
-        requireView().findNavController().navigate(R.id.action_homeFragment_to_historyFragment)
+        findNavController().navigate(R.id.action_homeFragment_to_historyFragment)
     }
 
     fun goToSettings() {
-        requireView().findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
     }
 }

@@ -1,9 +1,11 @@
 package com.example.trakr.adapters
 
+import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trakr.R
 import com.example.trakr.databinding.ViewDayBinding
@@ -33,7 +35,13 @@ class DayRecyclerViewAdapter(private val fragment: HistoryFragment) :
         holder.binding.date = date
         holder.binding.timeEntriesList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = TimeEntryRecyclerViewAdapter()
+            adapter = TimeEntryRecyclerViewAdapter {
+                findNavController().navigate(
+                    R.id.action_historyFragment_to_editTimeEntryFragment,
+                    Bundle().apply {
+                        putSerializable("timeEntry", it)
+                    })
+            }
             (adapter as TimeEntryRecyclerViewAdapter).timeEntries = timeEntries
         }
     }

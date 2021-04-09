@@ -1,6 +1,7 @@
 package com.example.trakr.models
 
 import com.google.firebase.firestore.DocumentSnapshot
+import java.io.Serializable
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.util.concurrent.TimeUnit
@@ -13,7 +14,7 @@ data class TimeEntry(
     val startTime: LocalDateTime,
     var duration: Duration,
     var color: Int
-) {
+) : Serializable {
     fun exists() = id != null
 
     fun toHashMap(): HashMap<String, Any> {

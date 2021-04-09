@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentChangePasswordBinding
 import com.example.trakr.models.User
@@ -31,7 +32,7 @@ class ChangePasswordFragment : Fragment() {
     }
 
     fun back() {
-        requireView().findNavController().navigateUp()
+        findNavController().navigateUp()
     }
 
     fun confirm() {
@@ -56,7 +57,7 @@ class ChangePasswordFragment : Fragment() {
                 newPassword,
                 object : UserViewModel.AuthListener {
                     override fun onAuthenticated(user: User) {
-                        requireView().findNavController().navigateUp()
+                        findNavController().navigateUp()
                         Snackbar.make(
                             requireView(),
                             "Your password has been successfully changed",

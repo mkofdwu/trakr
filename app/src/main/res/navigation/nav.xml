@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editTimeEntryFragment"
+            app:destination="@id/editTimeEntryFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -80,7 +83,11 @@
         android:id="@+id/historyFragment"
         android:name="com.example.trakr.ui.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_editTimeEntryFragment"
+            app:destination="@id/editTimeEntryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newTimeEntryFragment"
         android:name="com.example.trakr.ui.NewTimeEntryFragment"
@@ -113,4 +120,8 @@
         android:id="@+id/colorsSettingsFragment"
         android:name="com.example.trakr.ui.ColorsSettingsFragment"
         android:label="ColorsSettingsFragment" />
+    <fragment
+        android:id="@+id/editTimeEntryFragment"
+        android:name="com.example.trakr.ui.EditTimeEntryFragment"
+        android:label="EditTimeEntryFragment" />
 </navigation>

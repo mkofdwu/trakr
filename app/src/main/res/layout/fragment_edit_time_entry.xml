@@ -9,7 +9,11 @@
 
         <variable
             name="fragment"
-            type="com.example.trakr.ui.NewTimeEntryFragment" />
+            type="com.example.trakr.ui.EditTimeEntryFragment" />
+
+        <variable
+            name="timeEntry"
+            type="com.example.trakr.models.TimeEntry" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.NewTimeEntryFragment">
+        tools:context=".ui.EditTimeEntryFragment">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/color_pager"
@@ -39,8 +43,9 @@
                 android:contentDescription="@string/close_icon"
                 android:onClick="@{() -> fragment.back()}"
                 android:src="@drawable/close"
+                app:layout_constraintBottom_toBottomOf="@id/delete_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/delete_btn" />
 
             <TextView
                 android:id="@+id/title_text"
@@ -48,26 +53,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:letterSpacing="0.1"
-                android:text="@string/new_time_entry"
+                android:text="@string/edit_entry"
                 android:textAllCaps="true"
                 android:textColor="#FFF"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/delete_btn"
                 app:layout_constraintStart_toEndOf="@id/close_btn"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/delete_btn" />
 
-            <TextView
-                android:id="@+id/start_time_text"
+            <ImageView
+                android:id="@+id/delete_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0.6"
-                android:letterSpacing="0.1"
-                android:text='@{"at " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("h.mm a"))}'
-                android:textAllCaps="true"
-                android:textColor="#FFF"
-                android:textSize="14sp"
+                android:background="@drawable/round_icon_btn_bg"
+                android:clickable="true"
+                android:contentDescription="@string/delete_icon"
+                android:onClick="@{() -> fragment.deleteTimeEntry()}"
+                android:src="@drawable/delete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="at 9.37 pm" />
+                app:tint="#FFF" />
 
             <EditText
                 android:id="@+id/time_entry_title_field"
@@ -79,6 +84,7 @@
                 android:hint="@string/what_re_you_doing_now"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:text="@{timeEntry.title}"
                 android:textColor="#FFF"
                 android:textColorHint="#66FFFFFF"
                 android:textCursorDrawable="@null"

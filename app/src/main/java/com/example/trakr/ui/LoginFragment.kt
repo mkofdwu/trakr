@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentLoginBinding
 import com.example.trakr.models.User
@@ -32,7 +33,7 @@ class LoginFragment : Fragment() {
     }
 
     fun goToRegister() {
-        requireView().findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
     fun done() {
@@ -41,7 +42,7 @@ class LoginFragment : Fragment() {
         userViewModel.login(username, password, object : UserViewModel.AuthListener {
             override fun onAuthenticated(user: User) {
                 dbViewModel.setUserId(user.id)
-                requireView().findNavController()
+                findNavController()
                     .navigate(R.id.action_loginFragment_to_homeFragment)
             }
 

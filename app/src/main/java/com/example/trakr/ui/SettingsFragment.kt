@@ -18,6 +18,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentSettingsBinding
 import com.example.trakr.utils.loadPhotoURLToImageView
@@ -48,7 +49,7 @@ class SettingsFragment : Fragment() {
     }
 
     fun back() {
-        requireView().findNavController().navigateUp()
+        findNavController().navigateUp()
     }
 
     fun selectNewPhoto() {
@@ -115,12 +116,12 @@ class SettingsFragment : Fragment() {
     }
 
     fun goToColors() {
-        requireView().findNavController()
+        findNavController()
             .navigate(R.id.action_settingsFragment_to_colorsSettingsFragment)
     }
 
     fun goToChangePassword() {
-        requireView().findNavController()
+        findNavController()
             .navigate(R.id.action_settingsFragment_to_changePasswordFragment)
     }
 
@@ -130,7 +131,7 @@ class SettingsFragment : Fragment() {
 
     fun logout() {
         userViewModel.logout()
-        requireView().findNavController().navigate(R.id.action_settingsFragment_to_welcomeFragment)
+        findNavController().navigate(R.id.action_settingsFragment_to_welcomeFragment)
     }
 
     fun deleteAccount() {
@@ -143,7 +144,7 @@ class SettingsFragment : Fragment() {
         builder.setPositiveButton("Ok") { _, _ ->
             userViewModel.deleteAccount(textField.text.toString()) { isSuccessful ->
                 if (isSuccessful) {
-                    requireView().findNavController()
+                    findNavController()
                         .navigate(R.id.action_settingsFragment_to_welcomeFragment)
                 } else {
                     Snackbar.make(
@@ -160,7 +161,7 @@ class SettingsFragment : Fragment() {
     }
 
     fun goToAbout() {
-        requireView().findNavController().navigate(R.id.action_settingsFragment_to_aboutFragment)
+        findNavController().navigate(R.id.action_settingsFragment_to_aboutFragment)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -170,7 +171,7 @@ class SettingsFragment : Fragment() {
             }
             1 -> if (resultCode == RESULT_OK && data != null) {
                 val selectedImage = data.data
-                val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+                val filePathColumn = arrayOf("_data")
                 if (selectedImage != null) {
                     val cursor = requireActivity().contentResolver.query(
                         selectedImage,

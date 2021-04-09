@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.adapters.ColorsRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentColorsSettingsBinding
@@ -42,7 +43,7 @@ class ColorsSettingsFragment : Fragment() {
     }
 
     fun back() {
-        requireView().findNavController().navigateUp()
+        findNavController().navigateUp()
     }
 
     fun addColor() {

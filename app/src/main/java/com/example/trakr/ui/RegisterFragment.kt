@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentRegisterBinding
 import com.example.trakr.models.User
@@ -33,7 +34,7 @@ class RegisterFragment : Fragment() {
     }
 
     fun goToLogin() {
-        requireView().findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
     }
 
     fun done() {
@@ -62,7 +63,7 @@ class RegisterFragment : Fragment() {
                 override fun onAuthenticated(user: User) {
                     // FIXME: use a repository to store current user in the future
                     dbViewModel.setUserId(user.id)
-                    requireView().findNavController()
+                    findNavController()
                         .navigate(R.id.action_registerFragment_to_homeFragment)
                 }
 

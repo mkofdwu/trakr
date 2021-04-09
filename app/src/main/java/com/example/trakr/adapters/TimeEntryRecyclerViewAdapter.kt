@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.ViewTimeEntryBinding
 import com.example.trakr.models.TimeEntry
 
-class TimeEntryRecyclerViewAdapter :
+class TimeEntryRecyclerViewAdapter(private val indicatorOnClick: (timeEntry: TimeEntry) -> Unit) :
     RecyclerView.Adapter<TimeEntryRecyclerViewAdapter.ViewHolder>() {
     var timeEntries: List<TimeEntry> = listOf()
         set(newTimeEntries) {
@@ -27,6 +28,9 @@ class TimeEntryRecyclerViewAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val timeEntry = timeEntries[position]
         holder.binding.timeEntry = timeEntry
+        holder.binding.indicator.setOnClickListener {
+            indicatorOnClick(timeEntry)
+        }
     }
 
     override fun getItemCount(): Int = timeEntries.size

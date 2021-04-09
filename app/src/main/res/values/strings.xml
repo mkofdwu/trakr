@@ -51,4 +51,6 @@
     <string name="delete_icon">delete icon</string>
     <string name="backup_data">Backup data</string>
     <string name="start_tracking_your_time_by_adding_a_time_entry">Start tracking your time by adding a time entry</string>
+    <string name="analytics">Analytics</string>
+    <string name="edit_entry">Edit entry</string>
 </resources>

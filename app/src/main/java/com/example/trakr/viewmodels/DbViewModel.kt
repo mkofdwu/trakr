@@ -31,6 +31,14 @@ class DbViewModel : ViewModel() {
         timeEntriesRef.add(timeEntry.toHashMap())
     }
 
+    fun deleteTimeEntry(id: String) {
+        timeEntriesRef.document(id).delete()
+    }
+
+    fun updateTimeEntry(timeEntry: TimeEntry) {
+        timeEntriesRef.document(timeEntry.id!!).update(timeEntry.toHashMap())
+    }
+
     fun streamTimeEntriesToday(
         callback: (timeEntries: List<TimeEntry>?, error: FirebaseFirestoreException?) -> Unit
     ) {

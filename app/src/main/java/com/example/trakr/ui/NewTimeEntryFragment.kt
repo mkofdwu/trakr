@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.adapters.ColorViewPagerAdapter
 import com.example.trakr.databinding.FragmentNewTimeEntryBinding
@@ -42,7 +43,7 @@ class NewTimeEntryFragment : Fragment() {
     }
 
     fun back() {
-        requireView().findNavController().navigateUp()
+        findNavController().navigateUp()
     }
 
     fun done() {
@@ -59,7 +60,7 @@ class NewTimeEntryFragment : Fragment() {
         )
         userViewModel.updateUser("activeTimeEntry", currentUser.activeTimeEntry!!.toHashMap())
         hideKeyboard()
-        requireView().findNavController().navigateUp()
+        findNavController().navigateUp()
     }
 
     private fun hideKeyboard() {

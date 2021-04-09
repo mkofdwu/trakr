@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trakr.R
-import com.example.trakr.ui.ColorsSettingsFragment
+import com.example.trakr.ui.fragments.ColorsSettingsFragment
 import com.google.android.material.card.MaterialCardView
 
 const val ITEM_COLOR = 0

@@ -5,7 +5,7 @@
 
         <variable
             name="fragment"
-            type="com.example.trakr.ui.HistoryFragment" />
+            type="com.example.trakr.ui.fragments.HistoryFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HistoryFragment">
+        tools:context=".ui.fragments.HistoryFragment">
 
         <!-- TODO: collapsing toolbar -->
 

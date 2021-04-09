@@ -9,7 +9,7 @@
 
         <variable
             name="fragment"
-            type="com.example.trakr.ui.NewTimeEntryFragment" />
+            type="com.example.trakr.ui.fragments.NewTimeEntryFragment" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.NewTimeEntryFragment">
+        tools:context=".ui.fragments.NewTimeEntryFragment">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/color_pager"

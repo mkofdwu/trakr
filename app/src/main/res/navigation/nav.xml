@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.trakr.ui.SplashFragment"
+        android:name="com.example.trakr.ui.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.trakr.ui.HomeFragment"
+        android:name="com.example.trakr.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.trakr.ui.LoginFragment"
+        android:name="com.example.trakr.ui.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.trakr.ui.RegisterFragment"
+        android:name="com.example.trakr.ui.fragments.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.trakr.ui.WelcomeFragment"
+        android:name="com.example.trakr.ui.fragments.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome">
         <action
@@ -76,12 +76,12 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.trakr.ui.AboutFragment"
+        android:name="com.example.trakr.ui.fragments.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.trakr.ui.HistoryFragment"
+        android:name="com.example.trakr.ui.fragments.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" >
         <action
@@ -90,12 +90,12 @@
     </fragment>
     <fragment
         android:id="@+id/newTimeEntryFragment"
-        android:name="com.example.trakr.ui.NewTimeEntryFragment"
+        android:name="com.example.trakr.ui.fragments.NewTimeEntryFragment"
         android:label="fragment_new_time_entry"
         tools:layout="@layout/fragment_new_time_entry" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.trakr.ui.SettingsFragment"
+        android:name="com.example.trakr.ui.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings">
         <action
@@ -113,15 +113,15 @@
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.example.trakr.ui.ChangePasswordFragment"
+        android:name="com.example.trakr.ui.fragments.ChangePasswordFragment"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" />
     <fragment
         android:id="@+id/colorsSettingsFragment"
-        android:name="com.example.trakr.ui.ColorsSettingsFragment"
+        android:name="com.example.trakr.ui.fragments.ColorsSettingsFragment"
         android:label="ColorsSettingsFragment" />
     <fragment
         android:id="@+id/editTimeEntryFragment"
-        android:name="com.example.trakr.ui.EditTimeEntryFragment"
+        android:name="com.example.trakr.ui.fragments.EditTimeEntryFragment"
         android:label="EditTimeEntryFragment" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.trakr.ui
+package com.example.trakr.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.adapters.TimeEntryRecyclerViewAdapter
@@ -75,7 +74,9 @@ class HomeFragment : Fragment() {
                 binding.placeholderContainer.visibility = View.GONE
             } else {
                 binding.timeEntriesList.visibility = View.GONE
-                binding.placeholderContainer.visibility = View.VISIBLE
+                if (currentUser.activeTimeEntry == null) {
+                    binding.placeholderContainer.visibility = View.VISIBLE
+                }
             }
         }
         return binding.root
@@ -109,6 +110,9 @@ class HomeFragment : Fragment() {
             val currentUser = userViewModel.getCurrentUser()
             currentUser.activeTimeEntry = null
             userViewModel.updateUser("activeTimeEntry", null)
+            if (binding.timeEntriesList.adapter!!.itemCount == 0) {
+                binding.placeholderContainer.visibility = View.VISIBLE
+            }
             binding.invalidateAll()
         }
         builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }

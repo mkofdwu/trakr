@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trakr.R
 import com.example.trakr.databinding.ViewDayBinding
 import com.example.trakr.models.TimeEntry
-import com.example.trakr.ui.HistoryFragment
+import com.example.trakr.ui.fragments.HistoryFragment
 import java.time.LocalDate
 
 class DayRecyclerViewAdapter(private val fragment: HistoryFragment) :

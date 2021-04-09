@@ -1,4 +1,4 @@
-package com.example.trakr.ui
+package com.example.trakr.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.adapters.ColorViewPagerAdapter

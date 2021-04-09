@@ -9,7 +9,7 @@
 
         <variable
             name="fragment"
-            type="com.example.trakr.ui.EditTimeEntryFragment" />
+            type="com.example.trakr.ui.fragments.EditTimeEntryFragment" />
 
         <variable
             name="timeEntry"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.EditTimeEntryFragment">
+        tools:context=".ui.fragments.EditTimeEntryFragment">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/color_pager"

@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".ui.WelcomeFragment">
+        tools:context=".ui.fragments.WelcomeFragment">
 
         <com.example.trakr.ui.customviews.CurrentDateTextView
             android:id="@+id/current_date_text"

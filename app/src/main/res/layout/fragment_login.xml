@@ -5,7 +5,7 @@
 
         <variable
             name="fragment"
-            type="com.example.trakr.ui.LoginFragment" />
+            type="com.example.trakr.ui.fragments.LoginFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:paddingStart="60dp"
         android:paddingEnd="60dp"
-        tools:context=".ui.LoginFragment">
+        tools:context=".ui.fragments.LoginFragment">
 
         <com.example.trakr.ui.customviews.CurrentDateTextView
             android:id="@+id/current_date_text"

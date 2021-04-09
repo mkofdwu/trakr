@@ -1,4 +1,4 @@
-package com.example.trakr.ui
+package com.example.trakr.ui.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle

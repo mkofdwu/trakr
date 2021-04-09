@@ -11,7 +11,7 @@
 
         <variable
             name="fragment"
-            type="com.example.trakr.ui.HomeFragment" />
+            type="com.example.trakr.ui.fragments.HomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

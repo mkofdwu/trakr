@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.example.trakr.ui.HomeFragment" />
+            type="com.example.trakr.ui.fragments.HomeFragment" />
 
         <variable
             name="user"
@@ -19,7 +19,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HomeFragment">
+        tools:context=".ui.fragments.HomeFragment">
 
         <com.example.trakr.ui.customviews.CurrentDateTextView
             android:id="@+id/current_date_text"

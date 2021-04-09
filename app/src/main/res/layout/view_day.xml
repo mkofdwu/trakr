@@ -10,7 +10,7 @@
             type="java.time.LocalDate" />
         <variable
             name="fragment"
-            type="com.example.trakr.ui.HistoryFragment" />
+            type="com.example.trakr.ui.fragments.HistoryFragment" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

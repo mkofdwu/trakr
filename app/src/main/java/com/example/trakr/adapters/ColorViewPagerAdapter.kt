@@ -4,9 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class ColorViewPagerAdapter(
-    private val colors: List<Int>
-) : RecyclerView.Adapter<ColorViewPagerAdapter.ViewHolder>() {
+class ColorViewPagerAdapter(private val colors: List<Int>) :
+    RecyclerView.Adapter<ColorViewPagerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = View(parent.context)

@@ -1,13 +1,11 @@
 package com.example.trakr.ui
 
 import android.os.Bundle
-import android.text.InputType
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -15,11 +13,8 @@ import androidx.navigation.findNavController
 import com.example.trakr.R
 import com.example.trakr.adapters.TimeEntryRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentHomeBinding
-import com.example.trakr.validators.UsernamePasswordValidator
 import com.example.trakr.viewmodels.UserViewModel
 import com.example.trakr.viewmodels.DbViewModel
-import com.google.android.material.snackbar.Snackbar
-import java.time.Duration
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 import java.util.*
@@ -67,8 +62,13 @@ class HomeFragment : Fragment() {
             adapter = timeEntriesListAdapter
         }
         dbViewModel.streamTimeEntriesToday { timeEntries, error ->
-            if (timeEntries != null) {
+            if (timeEntries != null && timeEntries.isNotEmpty()) {
                 timeEntriesListAdapter.timeEntries = timeEntries
+                binding.timeEntriesList.visibility = View.VISIBLE
+                binding.placeholderContainer.visibility = View.GONE
+            } else {
+                binding.timeEntriesList.visibility = View.GONE
+                binding.placeholderContainer.visibility = View.VISIBLE
             }
         }
         return binding.root

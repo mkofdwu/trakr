@@ -30,6 +30,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
     kotlinOptions {
         jvmTarget = '1.8'
         freeCompilerArgs += "-Xuse-experimental=kotlin.time.ExperimentalTime"
@@ -54,7 +57,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.2.2'
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
     implementation 'com.github.kizitonwose:CalendarView:1.0.1'
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation 'com.github.duanhong169:colorpicker:1.1.6'
+    // for google drive data backup
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.http-client:google-http-client-gson:1.26.0'
+    implementation 'com.google.api-client:google-api-client-android:1.26.0'
+    implementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -48,7 +48,7 @@ class UserViewModel : ViewModel() {
             }
     }
 
-    private val defaultColors = listOf(
+    private val defaultColors = mutableListOf(
         Color.parseColor("#8636C6"), // purple
         Color.parseColor("#C68336"), // orange
         Color.parseColor("#C63636"), // red

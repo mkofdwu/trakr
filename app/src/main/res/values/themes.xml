@@ -17,7 +17,7 @@
     <style name="Theme.Trakr.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:paddingStart">14dp</item>
         <item name="android:paddingEnd">14dp</item>
-        <item name="android:fontFamily">@font/avenir_heavy</item>
+        <item name="android:fontFamily">@font/avenir_medium</item>
         <item name="android:background">@drawable/text_field_bg</item>
         <item name="android:textCursorDrawable">@null</item>
     </style>

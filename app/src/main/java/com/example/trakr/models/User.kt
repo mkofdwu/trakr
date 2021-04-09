@@ -10,7 +10,7 @@ data class User(
     var username: String,
     var photoURL: String?,
     var activeTimeEntry: TimeEntry?,
-    val colors: List<Int>,
+    val colors: MutableList<Int>,
     val createdAt: LocalDateTime,
 ) {
     fun toHashMap(): HashMap<String, Any?> {
@@ -34,7 +34,7 @@ data class User(
                 if (map["activeTimeEntry"] != null)
                     TimeEntry.active(map["activeTimeEntry"] as HashMap<String, Any>)
                 else null,
-                map["colors"] as List<Int>,
+                map["colors"] as MutableList<Int>,
                 LocalDateTime.ofEpochSecond(map["createdAt"] as Long, 0, ZoneOffset.UTC)
             )
         }

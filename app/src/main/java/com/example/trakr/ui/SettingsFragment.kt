@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
@@ -26,10 +25,6 @@ import com.example.trakr.validators.UsernamePasswordValidator
 import com.example.trakr.viewmodels.StorageViewModel
 import com.example.trakr.viewmodels.UserViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -119,9 +114,18 @@ class SettingsFragment : Fragment() {
         )
     }
 
+    fun goToColors() {
+        requireView().findNavController()
+            .navigate(R.id.action_settingsFragment_to_colorsSettingsFragment)
+    }
+
     fun goToChangePassword() {
         requireView().findNavController()
             .navigate(R.id.action_settingsFragment_to_changePasswordFragment)
+    }
+
+    fun backupData() {
+
     }
 
     fun logout() {

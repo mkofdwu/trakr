@@ -108,6 +108,10 @@ class HistoryFragment : Fragment() {
                 }
                 daysListAdapter.days = days
                 timeEntriesLoaded = numTimeEntries
+
+                binding.daysList.visibility = if (numTimeEntries == 0) View.GONE else View.VISIBLE
+                binding.placeholderContainer.visibility =
+                    if (numTimeEntries == 0) View.VISIBLE else View.GONE
             }
         }
     }
@@ -116,10 +120,11 @@ class HistoryFragment : Fragment() {
         latestDateTime = day.date.atStartOfDay()
         timeEntriesLoaded = 0
         loadedEverything = false
-        loadMoreDays()
 
         binding.daysList.visibility = View.VISIBLE
         binding.dateSelector.visibility = View.GONE
+
+        loadMoreDays()
     }
 
     fun back() {

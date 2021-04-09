@@ -39,7 +39,11 @@ class EditTimeEntryFragment : Fragment() {
         binding.fragment = this
         binding.timeEntry = timeEntry
         binding.colorPager.adapter = ColorViewPagerAdapter(colors)
-        binding.colorPager.currentItem = colors.indexOf(timeEntry.color)
+        for (index in 0.until(colors.size)) {
+            if (colors[index] == timeEntry.color) {
+                binding.colorPager.setCurrentItem(index, false)
+            }
+        }
         return binding.root
     }
 

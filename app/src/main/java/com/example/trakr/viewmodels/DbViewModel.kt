@@ -2,14 +2,10 @@ package com.example.trakr.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.example.trakr.models.TimeEntry
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.*
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.time.Duration
 import java.time.temporal.ChronoUnit
 import java.util.concurrent.TimeUnit
 import kotlin.time.toDuration
@@ -39,11 +35,11 @@ class DbViewModel : ViewModel() {
         timeEntriesRef.document(timeEntry.id!!).update(timeEntry.toHashMap())
     }
 
-    fun streamTimeEntriesToday(
+    fun listenToTimeEntriesToday(
         callback: (timeEntries: List<TimeEntry>?, error: FirebaseFirestoreException?) -> Unit
-    ) {
+    ): ListenerRegistration {
         val startOfDayTimestamp = LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC)
-        timeEntriesRef
+        return timeEntriesRef
             .orderBy("startTime", Query.Direction.DESCENDING)
             .endBefore(startOfDayTimestamp)
             .addSnapshotListener { value, error ->
@@ -53,6 +49,33 @@ class DbViewModel : ViewModel() {
                 } else {
                     callback(null, error)
                 }
+            }
+    }
+
+    fun mostTimeSpent(
+        endDateTime: LocalDateTime,
+        num: Int,
+        callback: (titlesToTimeSpent: Map<String, Long>) -> Unit
+    ) {
+        timeEntriesRef
+            .orderBy("startTime", Query.Direction.DESCENDING)
+            .endBefore(endDateTime.toEpochSecond(ZoneOffset.UTC))
+            .get().addOnSuccessListener { snapshot ->
+                val titlesToDuration = hashMapOf<String, Long>()
+                snapshot.documents.forEach { doc ->
+                    val title = doc.data!!["title"] as String
+                    val duration = doc.data!!["duration"] as Long
+                    if (titlesToDuration.containsKey(title)) {
+                        titlesToDuration[title]!!.plus(duration)
+                    } else {
+                        titlesToDuration[title] = duration
+                    }
+                }
+                val sorted =
+                    titlesToDuration.toList().sortedBy { (_, value) -> -value }
+                        .subList(0, num.coerceAtMost(titlesToDuration.size))
+                        .toMap()
+                callback(sorted)
             }
     }
 

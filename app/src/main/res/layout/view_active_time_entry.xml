@@ -3,8 +3,6 @@
 
     <data>
 
-        <import type="java.time.format.DateTimeFormatter" />
-
         <variable
             name="timeEntry"
             type="com.example.trakr.models.TimeEntry" />
@@ -22,15 +20,16 @@
         android:background="@drawable/card_bg"
         android:paddingStart="30dp"
         android:paddingTop="36dp"
-        android:paddingEnd="0dp"
+        android:paddingEnd="30dp"
         android:paddingBottom="36dp">
 
         <TextView
             android:id="@+id/duration_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:alpha="0.2"
             android:fontFamily="@font/avenir_heavy"
-            android:textColor="@color/lightPrimaryOnAbsolute"
+            android:textColor="@color/text0"
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,52 +37,44 @@
 
         <TextView
             android:id="@+id/time_entry_title_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/avenir_medium"
             android:text="@{timeEntry.title}"
-            android:textColor="@color/primary"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/delete_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/duration_text"
             tools:text="Create a test" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginStart="30dp"
-            android:background="@color/lightPrimaryOnAbsolute"
-            app:layout_constraintBottom_toBottomOf="@id/duration_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/duration_text"
-            app:layout_constraintTop_toTopOf="@id/duration_text" />
-
         <ImageView
             android:id="@+id/delete_btn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/round_outline_black_btn_bg"
             android:clickable="true"
             android:contentDescription="@string/delete_icon"
             android:onClick="@{() -> fragment.deleteActiveTimeEntry()}"
             android:src="@drawable/delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/finish_btn"
-            app:tint="@color/primary" />
+            app:tint="@color/text0" />
 
         <ImageView
             android:id="@+id/finish_btn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="30dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/round_outline_black_btn_bg"
             android:clickable="true"
             android:contentDescription="@string/finish_icon"
             android:onClick="@{() -> fragment.finishActiveTimeEntry()}"
             android:src="@drawable/check"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/primary" />
+            app:tint="@color/text0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,10 +3,6 @@
 
     <data>
 
-        <import type="java.time.LocalDateTime" />
-
-        <import type="java.time.format.DateTimeFormatter" />
-
         <variable
             name="fragment"
             type="com.example.trakr.ui.fragments.EditTimeEntryFragment" />
@@ -64,7 +60,7 @@
                 android:id="@+id/delete_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_icon_btn_bg"
+                android:background="@drawable/round_outline_btn_bg"
                 android:clickable="true"
                 android:contentDescription="@string/delete_icon"
                 android:onClick="@{() -> fragment.deleteTimeEntry()}"

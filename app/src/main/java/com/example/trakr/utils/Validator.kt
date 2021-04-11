@@ -1,23 +1,23 @@
-package com.example.trakr.validators
+package com.example.trakr.utils
 
-enum class Field {
-    USERNAME,
-    PASSWORD,
-    CONFIRM_PASSWORD
-}
+class Validator {
+    data class Error(val field: Field, val message: String) {
+    }
 
-data class MyError(val field: Field, val message: String) {
-}
+    enum class Field {
+        USERNAME,
+        PASSWORD,
+        CONFIRM_PASSWORD
+    }
 
-class UsernamePasswordValidator {
     companion object {
         @JvmStatic
-        fun validateUsername(username: String): MyError? {
-            if (username.isBlank()) return MyError(
+        fun validateUsername(username: String): Error? {
+            if (username.isBlank()) return Error(
                 Field.USERNAME,
                 "your username cannot be blank"
             )
-            if (username.length < 2) return MyError(
+            if (username.length < 2) return Error(
                 Field.USERNAME,
                 "your username must be at least 2 characters"
             )
@@ -28,16 +28,16 @@ class UsernamePasswordValidator {
         fun validatePasswordConfirmPassword(
             password: String,
             confirmPassword: String
-        ): List<MyError> {
-            val errors = mutableListOf<MyError>()
+        ): List<Error> {
+            val errors = mutableListOf<Error>()
             if (password.length < 6) errors.add(
-                MyError(
+                Error(
                     Field.PASSWORD,
                     "your password must be at least 6 characters"
                 )
             )
             if (confirmPassword != password) errors.add(
-                MyError(
+                Error(
                     Field.CONFIRM_PASSWORD,
                     "the passwords entered do not match"
                 )

@@ -1,23 +1,27 @@
 package com.example.trakr.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trakr.R
-import com.example.trakr.adapters.TimeEntryRecyclerViewAdapter
+import com.example.trakr.adapters.TodayTimeEntryRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentHomeBinding
-import com.example.trakr.viewmodels.UserViewModel
+import com.example.trakr.models.TimeEntry
+import com.example.trakr.utils.Format
 import com.example.trakr.viewmodels.DbViewModel
+import com.example.trakr.viewmodels.UserViewModel
+import com.google.firebase.firestore.ListenerRegistration
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 import java.util.*
+import kotlin.time.Duration
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -25,14 +29,30 @@ class HomeFragment : Fragment() {
     private val dbViewModel: DbViewModel by activityViewModels()
 
     private var durationTimer = Timer()
+    private lateinit var listenerRegistration: ListenerRegistration
 
-    private val timeEntriesListAdapter = TimeEntryRecyclerViewAdapter {
+    private val timeEntriesListAdapter = TodayTimeEntryRecyclerViewAdapter({
+        val currentUser = userViewModel.getCurrentUser()
+        if (currentUser.activeTimeEntry != null) {
+            dbViewModel.addActiveTimeEntry(currentUser.activeTimeEntry!!)
+        }
+        currentUser.activeTimeEntry = TimeEntry(
+            null,
+            it.title,
+            LocalDateTime.now(),
+            Duration.ZERO,
+            it.color
+        )
+        userViewModel.updateUser("activeTimeEntry", currentUser.activeTimeEntry!!.toHashMap())
+        binding.invalidateAll()
+        setupTimer()
+    }, {
         findNavController().navigate(
             R.id.action_homeFragment_to_editTimeEntryFragment,
             Bundle().apply {
                 putSerializable("timeEntry", it)
             })
-    }
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,31 +63,13 @@ class HomeFragment : Fragment() {
         val currentUser = userViewModel.getCurrentUser()
         binding.user = currentUser
         if (currentUser.activeTimeEntry != null) {
-            durationTimer = Timer()
-            durationTimer.schedule(object : TimerTask() {
-                override fun run() {
-                    val startTime = currentUser.activeTimeEntry!!.startTime
-                    val duration = ChronoUnit.SECONDS.between(startTime, LocalDateTime.now())
-                    val seconds = (duration % 60).toInt()
-                    val minutes = (duration % 3600 / 60).toInt()
-                    val hours = (duration / 3600).toInt()
-                    val f = { n: Int -> n.toString().padStart(2, '0') }
-                    val str: String = when {
-                        hours > 0 -> "${f(hours)}:${f(minutes)}:${f(seconds)}"
-                        minutes > 0 -> "${f(minutes)}:${f(seconds)}"
-                        else -> "${seconds}s"
-                    }
-                    requireActivity().runOnUiThread {
-                        binding.activeTimeEntry.durationText.text = str
-                    }
-                }
-            }, 0, 1000)
+            setupTimer()
         }
         binding.timeEntriesList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = timeEntriesListAdapter
         }
-        dbViewModel.streamTimeEntriesToday { timeEntries, error ->
+        listenerRegistration = dbViewModel.listenToTimeEntriesToday { timeEntries, _ ->
             if (timeEntries != null && timeEntries.isNotEmpty()) {
                 timeEntriesListAdapter.timeEntries = timeEntries
                 binding.timeEntriesList.visibility = View.VISIBLE
@@ -86,6 +88,24 @@ class HomeFragment : Fragment() {
         super.onPause()
         durationTimer.cancel()
         durationTimer.purge()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        listenerRegistration.remove()
+    }
+
+    private fun setupTimer() {
+        durationTimer = Timer()
+        durationTimer.schedule(object : TimerTask() {
+            override fun run() {
+                val startTime = userViewModel.getCurrentUser().activeTimeEntry!!.startTime
+                val duration = ChronoUnit.SECONDS.between(startTime, LocalDateTime.now())
+                requireActivity().runOnUiThread {
+                    binding.activeTimeEntry.durationText.text = Format.timerDuration(duration)
+                }
+            }
+        }, 0, 1000)
     }
 
     fun finishActiveTimeEntry() {
@@ -123,8 +143,8 @@ class HomeFragment : Fragment() {
         findNavController().navigate(R.id.action_homeFragment_to_newTimeEntryFragment)
     }
 
-    fun goToHistory() {
-        findNavController().navigate(R.id.action_homeFragment_to_historyFragment)
+    fun goToAnalytics() {
+        findNavController().navigate(R.id.action_homeFragment_to_analyticsFragment)
     }
 
     fun goToSettings() {

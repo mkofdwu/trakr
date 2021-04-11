@@ -5,7 +5,7 @@
 
         <import type="java.time.LocalDateTime" />
 
-        <import type="java.time.format.DateTimeFormatter" />
+        <import type="com.example.trakr.utils.Format" />
 
         <variable
             name="fragment"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:alpha="0.6"
                 android:letterSpacing="0.1"
-                android:text='@{"at " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("h.mm a"))}'
+                android:text='@{"at " + Format.timeOfDay(LocalDateTime.now())}'
                 android:textAllCaps="true"
                 android:textColor="#FFF"
                 android:textSize="14sp"

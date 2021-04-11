@@ -23,9 +23,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_newTimeEntryFragment"
             app:destination="@id/newTimeEntryFragment" />
         <action
@@ -34,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_editTimeEntryFragment"
             app:destination="@id/editTimeEntryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_analyticsFragment"
+            app:destination="@id/analyticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -124,4 +124,12 @@
         android:id="@+id/editTimeEntryFragment"
         android:name="com.example.trakr.ui.fragments.EditTimeEntryFragment"
         android:label="EditTimeEntryFragment" />
+    <fragment
+        android:id="@+id/analyticsFragment"
+        android:name="com.example.trakr.ui.fragments.AnalyticsFragment"
+        android:label="AnalyticsFragment" >
+        <action
+            android:id="@+id/action_analyticsFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
 </navigation>

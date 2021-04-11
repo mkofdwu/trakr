@@ -3,12 +3,12 @@ package com.example.trakr.ui.customviews
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import com.example.trakr.utils.Format
+import java.time.LocalDateTime
 
 class CurrentDateTextView : AppCompatTextView {
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        text = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMM"))
+        text = Format.date(LocalDateTime.now())
     }
 
     constructor(context: Context) : this(context, null)

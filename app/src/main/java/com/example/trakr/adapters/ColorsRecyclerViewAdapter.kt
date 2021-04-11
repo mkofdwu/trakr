@@ -7,9 +7,6 @@ import com.example.trakr.R
 import com.example.trakr.ui.fragments.ColorsSettingsFragment
 import com.google.android.material.card.MaterialCardView
 
-const val ITEM_COLOR = 0
-const val ITEM_ADD_BTN = 1
-
 class ColorsRecyclerViewAdapter(
     private var colors: List<Int>,
     private val fragment: ColorsSettingsFragment
@@ -49,4 +46,9 @@ class ColorsRecyclerViewAdapter(
     override fun getItemCount(): Int = colors.size + 1 // for add button
 
     inner class ViewHolder(val view: MaterialCardView) : RecyclerView.ViewHolder(view) {}
+
+    companion object {
+        const val ITEM_COLOR = 0
+        const val ITEM_ADD_BTN = 1
+    }
 }

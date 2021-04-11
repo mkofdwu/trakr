@@ -3,7 +3,7 @@
 
     <data>
 
-        <import type="java.time.format.DateTimeFormatter" />
+        <import type="com.example.trakr.utils.Format" />
 
         <import type="android.view.View" />
 
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="6dp"
-            android:text='@{"Joined " + user.createdAt.format(DateTimeFormatter.ofPattern("dd MMM"))}'
+            android:text='@{"Joined " + Format.date(user.createdAt)}'
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/photo_container"
             app:layout_constraintStart_toEndOf="@id/photo_container"

@@ -53,4 +53,15 @@
     <string name="start_tracking_your_time_by_adding_a_time_entry">Start tracking your time by adding a time entry</string>
     <string name="analytics">Analytics</string>
     <string name="edit_entry">Edit entry</string>
+    <string name="play_icon">play icon</string>
+    <string name="how_you_spent_your_day">How you spent your day</string>
+    <string name="add_more_time_entries_so_we_can_calculate_your_stats">Add more time entries so we can calculate your stats</string>
+    <string name="past_time_entries_will_appear_here">Past time entries will appear here.</string>
+    <string name="woman_adding_an_entry_to_a_list">woman adding an entry to a list</string>
+    <string name="woman_sitting_on_a_clock">woman sitting on a clock</string>
+    <string name="man_looking_at_charts">man looking at charts</string>
+    <string name="most_time_spent">Most time spent</string>
+    <string name="analytics_icon">analytics icon</string>
+    <string name="_1_week">1 week</string>
+    <string name="recorded">recorded</string>
 </resources>

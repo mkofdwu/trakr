@@ -3,7 +3,7 @@
 
     <data>
 
-        <import type="java.time.format.DateTimeFormatter" />
+        <import type="com.example.trakr.utils.Format" />
 
         <variable
             name="timeEntry"
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenir_heavy"
-            android:text='@{timeEntry.startTime.format(DateTimeFormatter.ofPattern("h.mm a"))}'
+            android:text='@{Format.timeOfDay(timeEntry.startTime)}'
             android:textAllCaps="true"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="16dp"
+            android:gravity="end"
             android:text="@{timeEntry.title}"
-            android:textAlignment="textEnd"
             app:layout_constraintEnd_toStartOf="@id/indicator"
             app:layout_constraintStart_toEndOf="@id/time_text"
             app:layout_constraintTop_toTopOf="parent"

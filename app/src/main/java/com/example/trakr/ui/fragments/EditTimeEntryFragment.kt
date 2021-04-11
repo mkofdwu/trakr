@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.adapters.ColorViewPagerAdapter
@@ -28,6 +28,7 @@ class EditTimeEntryFragment : Fragment() {
         super.onCreate(savedInstanceState)
         timeEntry = requireArguments().getSerializable("timeEntry") as TimeEntry
         colors = userViewModel.getCurrentUser().colors
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
     override fun onCreateView(

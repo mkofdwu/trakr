@@ -20,8 +20,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentSettingsBinding
+import com.example.trakr.utils.Validator
 import com.example.trakr.utils.loadPhotoURLToImageView
-import com.example.trakr.validators.UsernamePasswordValidator
 import com.example.trakr.viewmodels.StorageViewModel
 import com.example.trakr.viewmodels.UserViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -89,7 +89,7 @@ class SettingsFragment : Fragment() {
         builder.setView(textField)
         builder.setPositiveButton("Ok") { _, _ ->
             val newUsername = textField.text.toString()
-            val error = UsernamePasswordValidator.validateUsername(newUsername)
+            val error = Validator.validateUsername(newUsername)
             if (error == null) {
                 userViewModel.getCurrentUser().username = newUsername
                 userViewModel.updateUser("username", newUsername)

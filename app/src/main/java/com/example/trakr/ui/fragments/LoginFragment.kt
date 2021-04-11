@@ -2,21 +2,18 @@ package com.example.trakr.ui.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
 import com.example.trakr.databinding.FragmentLoginBinding
 import com.example.trakr.models.User
-import com.example.trakr.validators.Field
-import com.example.trakr.validators.UsernamePasswordValidator
-import com.example.trakr.viewmodels.UserViewModel
 import com.example.trakr.viewmodels.DbViewModel
+import com.example.trakr.viewmodels.UserViewModel
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding

@@ -3,11 +3,12 @@
 
     <data>
 
-        <import type="java.time.format.DateTimeFormatter" />
+        <import type="com.example.trakr.utils.Format" />
 
         <variable
             name="date"
             type="java.time.LocalDate" />
+
         <variable
             name="fragment"
             type="com.example.trakr.ui.fragments.HistoryFragment" />
@@ -22,14 +23,14 @@
 
         <TextView
             android:id="@+id/date_text"
-            android:clickable="true"
-            android:onClick="@{() -> fragment.goToSelectDate(date)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:clickable="true"
             android:fontFamily="@font/avenir_heavy"
             android:letterSpacing="0.1"
-            android:text='@{date.format(DateTimeFormatter.ofPattern("dd MMM"))}'
+            android:onClick="@{() -> fragment.goToSelectDate(date)}"
+            android:text="@{Format.date(date.atStartOfDay())}"
             android:textAllCaps="true"
             android:textSize="18sp"
             tools:text="16 Mar" />
@@ -45,8 +46,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:itemCount="5"
-            tools:listitem="@layout/view_time_entry" />
-
-
+            tools:listitem="@layout/view_past_time_entry" />
     </LinearLayout>
 </layout>

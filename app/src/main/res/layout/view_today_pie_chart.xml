@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_bg"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_heavy"
+            android:text="@string/how_you_spent_your_day"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text" />
+
+        <TextView
+            android:id="@+id/total_time_today_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_heavy"
+            android:textColor="@color/primary"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/recorded_text"
+            app:layout_constraintEnd_toEndOf="@id/chart"
+            app:layout_constraintStart_toStartOf="@id/chart"
+            app:layout_constraintTop_toTopOf="@id/chart"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="8h" />
+
+        <TextView
+            android:id="@+id/recorded_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_medium"
+            android:text="@string/recorded"
+            android:textColor="@color/primary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/chart"
+            app:layout_constraintEnd_toEndOf="@id/chart"
+            app:layout_constraintStart_toStartOf="@id/chart"
+            app:layout_constraintTop_toBottomOf="@id/total_time_today_text" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/legend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/chart"
+            app:layout_constraintTop_toTopOf="@id/chart"
+            tools:itemCount="5"
+            tools:listitem="@layout/view_legend_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

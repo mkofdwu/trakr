@@ -2,12 +2,13 @@ package com.example.trakr.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
@@ -29,6 +30,7 @@ class NewTimeEntryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         colors = userViewModel.getCurrentUser().colors
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
     override fun onCreateView(
@@ -58,7 +60,7 @@ class NewTimeEntryFragment : Fragment() {
             colors[binding.colorPager.currentItem]
         )
         userViewModel.updateUser("activeTimeEntry", currentUser.activeTimeEntry!!.toHashMap())
-        hideKeyboard()
+//        hideKeyboard()
         findNavController().navigateUp()
     }
 

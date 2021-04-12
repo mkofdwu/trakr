@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
-import com.example.trakr.adapters.ColorsRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentColorsSettingsBinding
+import com.example.trakr.ui.adapters.ColorsRecyclerViewAdapter
 import com.example.trakr.ui.misc.GridSpacingItemDecoration
 import com.example.trakr.ui.misc.UnscrollableGridLayoutManager
 import com.example.trakr.viewmodels.UserViewModel

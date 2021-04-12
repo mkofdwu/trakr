@@ -97,12 +97,12 @@
                 android:textAllCaps="true"
                 android:textColor="#FFF"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@id/done_btn"
+                app:layout_constraintBottom_toBottomOf="@id/update_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/done_btn" />
+                app:layout_constraintTop_toTopOf="@id/update_btn" />
 
             <TextView
-                android:id="@+id/done_btn"
+                android:id="@+id/update_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/outline_btn_bg"
@@ -111,8 +111,8 @@
                 android:fontFamily="@font/avenir_heavy"
                 android:gravity="center"
                 android:letterSpacing="0.1"
-                android:onClick="@{() -> fragment.done()}"
-                android:text="@string/done"
+                android:onClick="@{() -> fragment.update()}"
+                android:text="@string/update"
                 android:textAllCaps="true"
                 android:textColor="@color/outline_btn_text_color"
                 app:drawableEndCompat="@drawable/forward"

@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trakr.R
-import com.example.trakr.adapters.DayRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentHistoryBinding
+import com.example.trakr.ui.adapters.DayRecyclerViewAdapter
 import com.example.trakr.viewmodels.DbViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -117,7 +117,7 @@ class HistoryFragment : Fragment() {
     }
 
     private fun goToDay(day: CalendarDay) {
-        latestDateTime = day.date.atStartOfDay()
+        latestDateTime = day.date.plusDays(1).atStartOfDay()
         timeEntriesLoaded = 0
         loadedEverything = false
 

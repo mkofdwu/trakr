@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
-import com.example.trakr.adapters.ColorViewPagerAdapter
 import com.example.trakr.databinding.FragmentEditTimeEntryBinding
 import com.example.trakr.models.TimeEntry
+import com.example.trakr.ui.adapters.ColorViewPagerAdapter
 import com.example.trakr.viewmodels.DbViewModel
 import com.example.trakr.viewmodels.UserViewModel
 
@@ -57,7 +57,7 @@ class EditTimeEntryFragment : Fragment() {
         findNavController().navigateUp()
     }
 
-    fun done() {
+    fun update() {
         timeEntry.title = binding.timeEntryTitleField.text.toString()
         timeEntry.color = colors[binding.colorPager.currentItem]
         dbViewModel.updateTimeEntry(timeEntry)

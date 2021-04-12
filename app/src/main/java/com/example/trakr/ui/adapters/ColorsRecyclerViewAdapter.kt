@@ -1,4 +1,4 @@
-package com.example.trakr.adapters
+package com.example.trakr.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

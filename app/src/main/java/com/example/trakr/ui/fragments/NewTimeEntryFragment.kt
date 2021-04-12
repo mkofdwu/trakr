@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.trakr.R
-import com.example.trakr.adapters.ColorViewPagerAdapter
 import com.example.trakr.databinding.FragmentNewTimeEntryBinding
 import com.example.trakr.models.TimeEntry
+import com.example.trakr.ui.adapters.ColorViewPagerAdapter
 import com.example.trakr.viewmodels.DbViewModel
 import com.example.trakr.viewmodels.UserViewModel
 import java.time.LocalDateTime
@@ -60,7 +60,7 @@ class NewTimeEntryFragment : Fragment() {
             colors[binding.colorPager.currentItem]
         )
         userViewModel.updateUser("activeTimeEntry", currentUser.activeTimeEntry!!.toHashMap())
-//        hideKeyboard()
+        hideKeyboard()
         findNavController().navigateUp()
     }
 

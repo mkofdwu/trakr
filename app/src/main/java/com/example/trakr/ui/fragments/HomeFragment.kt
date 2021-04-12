@@ -11,9 +11,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trakr.R
-import com.example.trakr.adapters.TodayTimeEntryRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentHomeBinding
 import com.example.trakr.models.TimeEntry
+import com.example.trakr.ui.adapters.TodayTimeEntryRecyclerViewAdapter
 import com.example.trakr.utils.Format
 import com.example.trakr.viewmodels.DbViewModel
 import com.example.trakr.viewmodels.UserViewModel
@@ -32,6 +32,8 @@ class HomeFragment : Fragment() {
     private lateinit var listenerRegistration: ListenerRegistration
 
     private val timeEntriesListAdapter = TodayTimeEntryRecyclerViewAdapter({
+        durationTimer.cancel()
+        durationTimer.purge()
         val currentUser = userViewModel.getCurrentUser()
         if (currentUser.activeTimeEntry != null) {
             dbViewModel.addActiveTimeEntry(currentUser.activeTimeEntry!!)
@@ -90,8 +92,8 @@ class HomeFragment : Fragment() {
         durationTimer.purge()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         listenerRegistration.remove()
     }
 

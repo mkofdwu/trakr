@@ -12,10 +12,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trakr.R
-import com.example.trakr.adapters.LegendItemRecyclerViewAdapter
 import com.example.trakr.databinding.FragmentAnalyticsBinding
 import com.example.trakr.models.LegendItem
 import com.example.trakr.models.TimeEntry
+import com.example.trakr.ui.adapters.LegendItemRecyclerViewAdapter
 import com.example.trakr.ui.misc.GridSpacingItemDecoration
 import com.example.trakr.ui.misc.UnscrollableGridLayoutManager
 import com.example.trakr.utils.Format
@@ -64,8 +64,8 @@ class AnalyticsFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         listenerRegistration.remove()
     }
 
@@ -115,6 +115,7 @@ class AnalyticsFragment : Fragment() {
             setDrawEntryLabels(false)
             holeRadius = 80f
             transparentCircleRadius = 80f
+            setHoleColor(ContextCompat.getColor(requireContext(), R.color.absolute))
             legend.isEnabled = false
             val dataSet = PieDataSet(pieEntries, "")
             dataSet.setDrawValues(false)

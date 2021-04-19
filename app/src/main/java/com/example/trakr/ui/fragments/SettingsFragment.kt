@@ -138,7 +138,7 @@ class SettingsFragment : Fragment() {
         builder.setTitle("Delete account")
         builder.setMessage("Confirm your password to delete your account")
         val textField = EditText(requireContext())
-        textField.inputType = InputType.TYPE_CLASS_TEXT
+        textField.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
         builder.setView(textField)
         builder.setPositiveButton("Ok") { _, _ ->
             userViewModel.deleteAccount(textField.text.toString()) { isSuccessful ->

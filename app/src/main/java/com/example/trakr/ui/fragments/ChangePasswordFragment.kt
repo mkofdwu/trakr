@@ -45,16 +45,19 @@ class ChangePasswordFragment : Fragment() {
             for (error in errors) {
                 when (error.field) {
                     Validator.Field.PASSWORD -> binding.newPasswordField.error = error.message
-                    Validator.Field.CONFIRM_PASSWORD -> binding.confirmNewPasswordField.error = error.message
+                    Validator.Field.CONFIRM_PASSWORD -> binding.confirmNewPasswordField.error =
+                        error.message
                     else -> throw Error("invalid error field: ${error.field}")
                 }
             }
         } else {
+            startLoading()
             userViewModel.changePassword(
                 currentPassword,
                 newPassword,
                 object : UserViewModel.AuthListener {
                     override fun onAuthenticated(user: User) {
+                        stopLoading()
                         findNavController().navigateUp()
                         Snackbar.make(
                             requireView(),
@@ -64,9 +67,20 @@ class ChangePasswordFragment : Fragment() {
                     }
 
                     override fun onException(exception: Exception?) {
+                        stopLoading()
                         binding.currentPasswordField.error = "Invalid password"
                     }
                 })
         }
+    }
+
+    private fun startLoading() {
+        binding.doneBtn.visibility = View.INVISIBLE
+        binding.loadingIndicatorContainer.visibility = View.VISIBLE
+    }
+
+    private fun stopLoading() {
+        binding.doneBtn.visibility = View.VISIBLE
+        binding.loadingIndicatorContainer.visibility = View.INVISIBLE
     }
 }

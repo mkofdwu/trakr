@@ -66,4 +66,5 @@
     <string name="recorded">recorded</string>
     <string name="add_icon">add icon</string>
     <string name="update">Update</string>
+    <string name="your_time_entry_s_title">Your time entry\'s title</string>
 </resources>

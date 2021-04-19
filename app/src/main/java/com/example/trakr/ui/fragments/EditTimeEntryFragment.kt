@@ -28,7 +28,16 @@ class EditTimeEntryFragment : Fragment() {
         super.onCreate(savedInstanceState)
         timeEntry = requireArguments().getSerializable("timeEntry") as TimeEntry
         colors = userViewModel.getCurrentUser().colors
+    }
+
+    override fun onStart() {
+        super.onStart()
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 
     override fun onCreateView(

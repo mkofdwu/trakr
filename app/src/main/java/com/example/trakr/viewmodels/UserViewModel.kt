@@ -45,7 +45,7 @@ class UserViewModel : ViewModel() {
                 } else {
                     authListener.onException(task.exception)
                 }
-            }
+            }.addOnFailureListener { }
     }
 
     private val defaultColors = mutableListOf(
@@ -133,6 +133,8 @@ class UserViewModel : ViewModel() {
             } else {
                 listener.onException(it.exception)
             }
+        }.addOnFailureListener {
+            listener.onException(it)
         }
     }
 

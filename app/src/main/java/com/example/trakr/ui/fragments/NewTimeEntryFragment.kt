@@ -30,7 +30,16 @@ class NewTimeEntryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         colors = userViewModel.getCurrentUser().colors
+    }
+
+    override fun onStart() {
+        super.onStart()
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 
     override fun onCreateView(
@@ -44,6 +53,7 @@ class NewTimeEntryFragment : Fragment() {
     }
 
     fun back() {
+        hideKeyboard()
         findNavController().navigateUp()
     }
 

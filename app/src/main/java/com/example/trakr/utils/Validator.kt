@@ -30,6 +30,12 @@ class Validator {
             confirmPassword: String
         ): List<Error> {
             val errors = mutableListOf<Error>()
+            if (password.isBlank()) errors.add(
+                Error(
+                    Field.PASSWORD,
+                    "your password cannot be blank"
+                )
+            )
             if (password.length < 6) errors.add(
                 Error(
                     Field.PASSWORD,

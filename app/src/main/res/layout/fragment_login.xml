@@ -120,6 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:focusable="false"
             android:fontFamily="@font/avenir_medium"
             android:onClick="@{() -> fragment.goToRegister()}"
             android:text="@string/register"
@@ -137,6 +138,7 @@
             android:background="@drawable/btn_bg"
             android:clickable="true"
             android:drawablePadding="10dp"
+            android:focusable="true"
             android:fontFamily="@font/avenir_heavy"
             android:gravity="center"
             android:letterSpacing="0.1"
@@ -149,17 +151,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/loading_indicator"
+        <RelativeLayout
+            android:id="@+id/loading_indicator_container"
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:background="@drawable/pressed_btn_bg"
-            android:indeterminate="true"
+            android:layout_height="0dp"
+            android:background="@drawable/loading_btn_bg"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/done_btn"
             app:layout_constraintEnd_toEndOf="@id/done_btn"
             app:layout_constraintStart_toStartOf="@id/done_btn"
-            app:layout_constraintTop_toTopOf="@id/done_btn" />
+            app:layout_constraintTop_toTopOf="@id/done_btn">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/loading_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                app:indicatorColor="#fff"
+                app:indicatorSize="20dp"
+                app:trackThickness="2dp" />
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

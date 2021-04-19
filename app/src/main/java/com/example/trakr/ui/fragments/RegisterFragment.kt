@@ -52,19 +52,23 @@ class RegisterFragment : Fragment() {
                 when (error.field) {
                     Validator.Field.USERNAME -> binding.usernameField.error = error.message
                     Validator.Field.PASSWORD -> binding.passwordField.error = error.message
-                    Validator.Field.CONFIRM_PASSWORD -> binding.confirmPasswordField.error = error.message
+                    Validator.Field.CONFIRM_PASSWORD -> binding.confirmPasswordField.error =
+                        error.message
                 }
             }
         } else {
+            startLoading()
             userViewModel.register(username, password, object : UserViewModel.AuthListener {
                 override fun onAuthenticated(user: User) {
                     // FIXME: use a repository to store current user in the future
+                    stopLoading()
                     dbViewModel.setUserId(user.id)
                     findNavController()
                         .navigate(R.id.action_registerFragment_to_homeFragment)
                 }
 
                 override fun onException(exception: Exception?) {
+                    stopLoading()
                     AlertDialog.Builder(context)
                         .setTitle("Error")
                         .setMessage(exception!!.message)
@@ -73,5 +77,15 @@ class RegisterFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun startLoading() {
+        binding.doneBtn.visibility = View.INVISIBLE
+        binding.loadingIndicatorContainer.visibility = View.VISIBLE
+    }
+
+    private fun stopLoading() {
+        binding.doneBtn.visibility = View.VISIBLE
+        binding.loadingIndicatorContainer.visibility = View.INVISIBLE
     }
 }

@@ -94,7 +94,7 @@ class DbViewModel : ViewModel() {
             .startAfter(dateTime.toEpochSecond(ZoneOffset.UTC))
             .limit(maxTimeEntries.toLong())
             .addSnapshotListener { value, error ->
-                if (value != null) {
+                if (value != null && value.documents.isNotEmpty()) {
                     val days = hashMapOf<LocalDate, List<TimeEntry>>()
                     value.documents.forEach {
                         val timeEntry = TimeEntry.fromDoc(it)

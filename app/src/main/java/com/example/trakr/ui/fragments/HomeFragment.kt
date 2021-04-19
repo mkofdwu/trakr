@@ -64,12 +64,18 @@ class HomeFragment : Fragment() {
         binding.fragment = this
         val currentUser = userViewModel.getCurrentUser()
         binding.user = currentUser
-        if (currentUser.activeTimeEntry != null) {
-            setupTimer()
-        }
         binding.timeEntriesList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = timeEntriesListAdapter
+        }
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val currentUser = userViewModel.getCurrentUser()
+        if (currentUser.activeTimeEntry != null) {
+            setupTimer()
         }
         listenerRegistration = dbViewModel.listenToTimeEntriesToday { timeEntries, _ ->
             if (timeEntries != null && timeEntries.isNotEmpty()) {
@@ -83,7 +89,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        return binding.root
     }
 
     override fun onPause() {

@@ -12,10 +12,11 @@ import com.example.trakr.databinding.ViewDayBinding
 import com.example.trakr.models.TimeEntry
 import com.example.trakr.ui.fragments.HistoryFragment
 import java.time.LocalDate
+import java.util.*
 
 class DayRecyclerViewAdapter(private val fragment: HistoryFragment) :
     RecyclerView.Adapter<DayRecyclerViewAdapter.ViewHolder>() {
-    var days: HashMap<LocalDate, List<TimeEntry>> = hashMapOf()
+    var days: SortedMap<LocalDate, List<TimeEntry>> = sortedMapOf()
         set(newDays) {
             field = newDays
             notifyDataSetChanged()

@@ -7,6 +7,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.temporal.ChronoUnit
+import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.time.toDuration
 
@@ -80,13 +81,17 @@ class DbViewModel : ViewModel() {
     }
 
     fun getHistory(
-        latestDateTime: LocalDateTime,
-        maxTimeEntries: Int,
-        callback: (days: HashMap<LocalDate, List<TimeEntry>>, numTimeEntries: Int, error: FirebaseFirestoreException?) -> Unit
+        dateTime: LocalDateTime,
+        untilOld: Boolean,
+        maxTimeEntries: Int, // total amount of time entries to load
+        callback: (days: SortedMap<LocalDate, List<TimeEntry>>, numTimeEntries: Int, otherDateTime: LocalDateTime?, error: FirebaseFirestoreException?) -> Unit
     ) {
         timeEntriesRef
-            .orderBy("startTime", Query.Direction.DESCENDING)
-            .startAfter(latestDateTime.toEpochSecond(ZoneOffset.UTC))
+            .orderBy(
+                "startTime",
+                if (untilOld) Query.Direction.DESCENDING else Query.Direction.ASCENDING
+            )
+            .startAfter(dateTime.toEpochSecond(ZoneOffset.UTC))
             .limit(maxTimeEntries.toLong())
             .addSnapshotListener { value, error ->
                 if (value != null) {
@@ -100,9 +105,16 @@ class DbViewModel : ViewModel() {
                             days[localDate] = mutableListOf(timeEntry)
                         }
                     }
-                    callback(days, value.documents.size, error)
+                    val sortedDays = days.toSortedMap(compareByDescending { it })
+                    callback(
+                        sortedDays,
+                        value.documents.size,
+                        if (untilOld) sortedDays.lastKey().atStartOfDay() else sortedDays.firstKey()
+                            .atStartOfDay(),
+                        error
+                    )
                 } else {
-                    callback(hashMapOf(), 0, error)
+                    callback(sortedMapOf(), 0, null, error)
                 }
             }
     }

@@ -40,9 +40,11 @@ class HistoryFragment : Fragment() {
 
     private val daysListAdapter = DayRecyclerViewAdapter(this)
 
-    private var latestDateTime = LocalDateTime.now()
+    private var startDateTime = LocalDateTime.now()
+    private var endDateTime = LocalDateTime.now()
     private var timeEntriesLoaded = 0
-    private var loadedEverything = false
+    private var loadedUntilOldest = false
+    private var loadedUntilNewest = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,18 +53,21 @@ class HistoryFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_history, null, false)
         binding.fragment = this
         binding.daysList.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
             adapter = daysListAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
-                    if (!recyclerView.canScrollVertically(RecyclerView.VERTICAL)) {
-                        loadMoreDays()
+                    if (!recyclerView.canScrollVertically(-1)) { // scroll up
+                        loadOlderDays()
+                    }
+                    if (!recyclerView.canScrollVertically(1)) { // scroll down
+                        loadNewerDays()
                     }
                 }
             })
         }
-        loadMoreDays()
+        loadOlderDays()
         binding.dateSelector.dayBinder = object : DayBinder<DayViewContainer> {
             override fun create(view: View) = DayViewContainer(view as TextView)
 
@@ -90,12 +95,13 @@ class HistoryFragment : Fragment() {
         return binding.root
     }
 
-    private fun loadMoreDays() {
-        if (loadedEverything) return
+    private fun loadNewerDays() {
+        if (loadedUntilNewest) return
         dbViewModel.getHistory(
-            latestDateTime,
+            startDateTime,
+            false,
             timeEntriesLoaded + 20
-        ) { days, numTimeEntries, error ->
+        ) { days, numTimeEntries, otherDateTime, error ->
             if (error != null) {
                 Snackbar.make(
                     requireView(),
@@ -104,10 +110,39 @@ class HistoryFragment : Fragment() {
                 ).show()
             } else {
                 if (numTimeEntries - timeEntriesLoaded < 20) {
-                    loadedEverything = true
+                    loadedUntilNewest = true
                 }
                 daysListAdapter.days = days
                 timeEntriesLoaded = numTimeEntries
+                endDateTime = otherDateTime
+
+                binding.daysList.visibility = if (numTimeEntries == 0) View.GONE else View.VISIBLE
+                binding.placeholderContainer.visibility =
+                    if (numTimeEntries == 0) View.VISIBLE else View.GONE
+            }
+        }
+    }
+
+    private fun loadOlderDays() {
+        if (loadedUntilOldest) return
+        dbViewModel.getHistory(
+            endDateTime,
+            true,
+            timeEntriesLoaded + 20
+        ) { days, numTimeEntries, otherDateTime, error ->
+            if (error != null) {
+                Snackbar.make(
+                    requireView(),
+                    "Failed to fetch history: ${error.message}",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            } else {
+                if (numTimeEntries - timeEntriesLoaded < 20) {
+                    loadedUntilOldest = true
+                }
+                daysListAdapter.days = days
+                timeEntriesLoaded = numTimeEntries
+                startDateTime = otherDateTime
 
                 binding.daysList.visibility = if (numTimeEntries == 0) View.GONE else View.VISIBLE
                 binding.placeholderContainer.visibility =
@@ -117,14 +152,14 @@ class HistoryFragment : Fragment() {
     }
 
     private fun goToDay(day: CalendarDay) {
-        latestDateTime = day.date.plusDays(1).atStartOfDay()
+        endDateTime = day.date.plusDays(1).atStartOfDay()
         timeEntriesLoaded = 0
-        loadedEverything = false
+        loadedUntilOldest = false
 
         binding.daysList.visibility = View.VISIBLE
         binding.dateSelector.visibility = View.GONE
 
-        loadMoreDays()
+        loadOlderDays()
     }
 
     fun back() {

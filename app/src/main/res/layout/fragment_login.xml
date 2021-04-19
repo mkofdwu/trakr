@@ -110,7 +110,7 @@
             android:text="@string/don_t_have_an_account"
             android:textColor="@color/text1"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@id/update_btn"
+            app:layout_constraintBottom_toTopOf="@id/done_btn"
             app:layout_constraintEnd_toStartOf="@id/register_btn"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent" />
@@ -130,7 +130,7 @@
             app:layout_constraintStart_toEndOf="@id/already_have_account_text" />
 
         <TextView
-            android:id="@+id/update_btn"
+            android:id="@+id/done_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
@@ -148,6 +148,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loading_indicator"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:background="@drawable/pressed_btn_bg"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/done_btn"
+            app:layout_constraintEnd_toEndOf="@id/done_btn"
+            app:layout_constraintStart_toStartOf="@id/done_btn"
+            app:layout_constraintTop_toTopOf="@id/done_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -34,6 +34,8 @@ class LoginFragment : Fragment() {
     }
 
     fun done() {
+        binding.doneBtn.visibility = View.GONE
+        binding.loadingIndicator.visibility = View.VISIBLE
         val username = binding.usernameField.text.toString()
         val password = binding.passwordField.text.toString()
         userViewModel.login(username, password, object : UserViewModel.AuthListener {

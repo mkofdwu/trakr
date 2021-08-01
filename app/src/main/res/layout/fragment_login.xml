@@ -22,10 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            android:letterSpacing="0.1"
-            android:textAllCaps="true"
-            android:textColor="@color/text2"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -130,48 +126,56 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/already_have_account_text" />
 
-        <TextView
+        <com.example.trakr.ui.customviews.MyButton
             android:id="@+id/done_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:background="@drawable/btn_bg"
-            android:clickable="true"
-            android:drawablePadding="10dp"
-            android:focusable="true"
-            android:fontFamily="@font/avenir_heavy"
-            android:gravity="center"
-            android:letterSpacing="0.1"
-            android:onClick="@{() -> fragment.done()}"
-            android:text="@string/done"
-            android:textAllCaps="true"
-            android:textColor="#fff"
-            app:drawableEndCompat="@drawable/forward"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
-        <RelativeLayout
-            android:id="@+id/loading_indicator_container"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/loading_btn_bg"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/done_btn"
-            app:layout_constraintEnd_toEndOf="@id/done_btn"
-            app:layout_constraintStart_toStartOf="@id/done_btn"
-            app:layout_constraintTop_toTopOf="@id/done_btn">
+        <!--        <TextView-->
+        <!--            android:id="@+id/done_btn"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginBottom="60dp"-->
+        <!--            android:background="@drawable/btn_bg"-->
+        <!--            android:clickable="true"-->
+        <!--            android:drawablePadding="10dp"-->
+        <!--            android:focusable="true"-->
+        <!--            android:fontFamily="@font/avenir_heavy"-->
+        <!--            android:gravity="center"-->
+        <!--            android:letterSpacing="0.1"-->
+        <!--            android:onClick="@{() -> fragment.done()}"-->
+        <!--            android:text="@string/done"-->
+        <!--            android:textAllCaps="true"-->
+        <!--            android:textColor="#fff"-->
+        <!--            app:drawableEndCompat="@drawable/forward"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/loading_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:indeterminate="true"
-                app:indicatorColor="#fff"
-                app:indicatorSize="20dp"
-                app:trackThickness="2dp" />
-        </RelativeLayout>
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/loading_indicator_container"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:background="@drawable/loading_btn_bg"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/done_btn"-->
+        <!--            app:layout_constraintEnd_toEndOf="@id/done_btn"-->
+        <!--            app:layout_constraintStart_toStartOf="@id/done_btn"-->
+        <!--            app:layout_constraintTop_toTopOf="@id/done_btn">-->
+
+        <!--            <com.google.android.material.progressindicator.CircularProgressIndicator-->
+        <!--                android:id="@+id/loading_indicator"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_centerInParent="true"-->
+        <!--                android:indeterminate="true"-->
+        <!--                app:indicatorColor="#fff"-->
+        <!--                app:indicatorSize="20dp"-->
+        <!--                app:trackThickness="2dp" />-->
+        <!--        </RelativeLayout>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

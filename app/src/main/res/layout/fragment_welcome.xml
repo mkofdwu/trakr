@@ -14,11 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:letterSpacing="0.1"
-            android:textAllCaps="true"
-            android:textColor="@color/text2"
-            android:textSize="14sp" />
+            android:layout_marginBottom="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,6 +40,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/btn_bg"
             android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/avenir_heavy"
             android:gravity="center"
             android:letterSpacing="0.1"
@@ -56,6 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
+            android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/avenir_heavy"
             android:letterSpacing="0.1"
             android:text="@string/login"
@@ -81,6 +80,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="false"
                 android:fontFamily="@font/avenir_medium"
                 android:text="@string/about"
                 android:textColor="@color/text3"
@@ -90,6 +91,8 @@
                 android:id="@+id/licenses_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
                 android:fontFamily="@font/avenir_medium"
                 android:text="@string/licenses"
                 android:textColor="@color/text3"

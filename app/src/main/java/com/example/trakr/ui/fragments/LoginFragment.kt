@@ -65,12 +65,12 @@ class LoginFragment : Fragment() {
     }
 
     private fun startLoading() {
-        binding.doneBtn.visibility = View.INVISIBLE
-        binding.loadingIndicatorContainer.visibility = View.VISIBLE
+//        binding.doneBtn.visibility = View.INVISIBLE
+//        binding.loadingIndicatorContainer.visibility = View.VISIBLE
     }
 
     private fun stopLoading() {
-        binding.doneBtn.visibility = View.VISIBLE
-        binding.loadingIndicatorContainer.visibility = View.INVISIBLE
+//        binding.doneBtn.visibility = View.VISIBLE
+//        binding.loadingIndicatorContainer.visibility = View.INVISIBLE
     }
 }
